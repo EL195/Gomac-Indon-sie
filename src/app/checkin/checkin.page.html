@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-title>{{info.Passager}}</ion-title>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/tabs"> </ion-back-button>
+
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-badge slot="start" color="primary">{{info.service}}</ion-badge>
+      <ion-label>{{info.ittienarire}}</ion-label>
+      <ion-button (click)=validate(info.id) *ngIf="checked==true" fill="outline" slot="end">Valider</ion-button>
+      <ion-button (click)=cancel(info.id) *ngIf="checked==false" fill="outline" slot="end">Annuler</ion-button>
+    </ion-item>
+  
+    <ion-card-content>
+     Type : {{info.type}} <br/>
+     Téléphone : {{info.telephone}} <br/>
+     Heure : {{info.heure}} <br/>
+     CNI : {{info.cni}} <br/>
+     Email : {{info.email}} <br/>
+    
+    <p *ngIf="info.service=='Hotel'">Entrée : {{info.dated.seconds * 1000 | date: 'dd-MM-yyyy'}} </p>  <br/>
+    <p *ngIf="info.service=='Hotel'">Sortie : {{info.sortie.seconds * 1000 | date: 'dd-MM-yyyy'}} </p>  <br/>
+    <p *ngIf="info.service=='Bus'">Depart : {{info.dated.seconds * 1000 | date: 'dd-MM-yyyy'}}  </p>  <br/>
+    <p *ngIf="info.service=='Vol'">Depart : {{info.dated.seconds * 1000 | date: 'dd-MM-yyyy'}}  </p>  <br/>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

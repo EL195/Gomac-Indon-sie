@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Kota baru</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+    </ion-buttons>
+    <ion-buttons  slot="end">
+      <ion-button (click)="presentPopover($event1)">
+        <ion-icon name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid>
+ 
+
+    <ion-row>
+      <ion-col>
+        <ion-input clearInput type="text" placeholder="Libellé" [(ngModel)]="ville" class="input" padding-horizontal></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" (click)="save()" color="primary"><strong class="white">Tambahkan</strong></ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+          <ion-text class="error" text-center>{{error}}</ion-text>
+      </ion-col>
+  </ion-row>
+  </ion-grid>
+</ion-content>

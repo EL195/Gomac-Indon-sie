@@ -1,0 +1,46 @@
+<ion-list padding>
+  <ion-item (click)="agence()">
+    <ion-icon color="primary" name="home-outline"></ion-icon>
+    Bis saya
+    </ion-item>
+  <ion-item (click)="booking()">
+    <ion-icon color="primary" name="bookmarks-outline"></ion-icon>
+   Reservasi saya
+  </ion-item>
+  <ion-item (click)="tickets()">
+    <ion-icon color="primary" name="card-outline"></ion-icon>
+    Tiket saya
+    </ion-item>
+   
+      <ion-item (click)="achat()">
+        <ion-icon color="primary" name="notifications-circle-outline"></ion-icon>
+        Transaksi saya
+        </ion-item>
+        <ion-item (click)="ville()">
+          <ion-icon color="primary" name="business-outline"></ion-icon>
+         Kota
+          </ion-item>
+      <ion-item (click)="notify()">
+        <ion-icon color="primary" name="notifications-circle-outline"></ion-icon>
+        Notifikasi
+        </ion-item>
+ 
+        <ion-item *ngIf="connect!=true" (click)="login()">
+          <ion-icon color="primary"  name="lock-closed-outline"></ion-icon>
+          koneksi
+          </ion-item>
+
+
+          <ion-item *ngIf="connect==true" (click)="goProfil()">
+            <ion-icon color="primary"  name="person"></ion-icon>
+            Profil saya
+            </ion-item>
+
+
+          <ion-item *ngIf="connect==true" (click)="logout()">
+            <ion-icon color="primary"  name="lock-closed-outline"></ion-icon>
+            Keluar
+            </ion-item>
+
+  
+</ion-list>

@@ -1,0 +1,35 @@
+<ion-card  *ngFor="let info of principal" class="cartesss">
+  <ion-item>
+    <ion-avatar (click)="showAgence(info.idAgence)"item-start>
+      <img src="{{info.image}}">
+    </ion-avatar>
+    <ion-label color="primary">{{info.depart}} - {{info.arrivee}}</ion-label>
+    <ion-button (click)="showDetail(info.idVoyage)" size="small">
+      <ion-icon slot="start" name="log-out-outline"></ion-icon>
+      Pesan
+    </ion-button>
+  </ion-item>
+  <ion-row>
+    <ion-col>
+      
+        <ion-badge color="warning">{{info.prix}} C </ion-badge>
+    </ion-col>
+    <ion-col>
+     
+    </ion-col>
+    <ion-col align-self-center text-center>
+      <ion-note>
+      
+        <ion-badge color="light">{{info.dateDepart.seconds * 1000 | date: 'dd-MM-yyyy'}}</ion-badge>
+      </ion-note>
+    </ion-col>
+    <ion-col>
+    
+      <ion-badge color="primary">{{info.type}} </ion-badge>
+    </ion-col>
+  </ion-row>
+</ion-card>
+
+
+ 
+

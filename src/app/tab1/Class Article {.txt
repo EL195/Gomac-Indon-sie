@@ -1,0 +1,50 @@
+Class Article {
+    private int code;
+    private String designation;
+    private double prix;
+    private String categorie;
+
+    public String getCategorie(){
+        return categorie;
+    }
+ public  Article(){}
+
+ public Article(int code, String designation, double prix, String categorie){
+     this.code=code;
+     this.designation=designation;
+     this.prix=prix;
+     this.categorie=categorie;
+
+ }
+
+ public double getPrix(){
+     return prix;
+ }
+
+  public setPrix(double prix){
+     this.prix=prix;
+ }
+
+ @overide
+ public String ToString(){
+     return "produit de code "+ this.code+" et de designation "+ this.designation+ "et de categorie "+ this.categorie+ "et qui coute "+ this.prix;
+ }
+
+@overide
+public bool Equals(Article B){
+    if(B==null){ return false}
+    elseif(B!=this){return false}
+    elseif((B.code==this.code)&&(B.designation==this.designation)&&(B.prix==this.prix)&&(B.categorie==this.categorie)){return true}
+    else{return false}
+}
+
+public CatégorieInvalideException(categorie) {
+    if(categorie=="Informatique" || categorie =="Bureautique" ){
+        this.categorie=categorie;
+    }
+    else{
+        new throw Exception("Categorie Invalide")
+    }
+}
+
+}

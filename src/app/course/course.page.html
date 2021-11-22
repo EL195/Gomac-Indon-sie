@@ -1,0 +1,42 @@
+<ion-content>
+    <div id="map"></div>
+    <div *ngIf="visionage && isionage">
+        Jarak : <b> {{gps.calculateDistance(arrive.getPosition().lat,depart.getPosition().lat,arrive.getPosition().lng,depart.getPosition().lng)|number:'1.1-2'}} KM</b> Prix : <b> {{gps.calculateDistance(arrive.getPosition().lat,depart.getPosition().lat,arrive.getPosition().lng,depart.getPosition().lng)*km|number:'1.1-1'}} Fcfa</b>
+    </div>
+  
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-label position="floating"><b>Jenis servis</b></ion-label>
+                <ion-select [(ngModel)]="course.type" okText="Okay" cancelText="Dismiss" required>
+                    <ion-select-option value="Course">Penumpang</ion-select-option>
+                    <ion-select-option value="Colis">Expedisi</ion-select-option>
+                </ion-select>
+            </ion-col>
+            <ion-col>
+                <ion-label position="floating"><b>Pilih kendaraan</b></ion-label>
+                <ion-select [(ngModel)]="course.engin" okText="Okay" cancelText="Dismiss" required (ionChange)="changeme()">
+                    <ion-select-option value={{sta}} *ngFor="let sta of engin">{{ sta}}</ion-select-option>
+                </ion-select>
+            </ion-col>
+
+        </ion-row>
+        <ion-row>
+            <ion-col *ngIf="course.type==='Colis'">
+                <ion-label><b> Tampilkan gambar</b>
+
+                    <p>{{course.photo}}</p>
+                </ion-label>
+                <ion-button (click)="photosave()" color="primary">
+                    Foto
+                    <ion-icon name="camera"></ion-icon>
+                </ion-button>
+            </ion-col>
+            <ion-col>
+                <ion-button type="submit" expand="block" color="secondary" (click)="save()">Validasi</ion-button>
+            </ion-col>
+
+        </ion-row>
+
+    </ion-grid>
+</ion-content>

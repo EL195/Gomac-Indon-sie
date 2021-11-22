@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-title>Daftar menu kami </ion-title>
+     
+      <ion-buttons  slot="end" (click)="solde()">
+          <ion-icon slot="icon-only" name="cash"></ion-icon>
+          <ion-badge color="warning" style="position: absolute; right: 15px; top: -5px;">3 000 C</ion-badge>
+      </ion-buttons>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+    </ion-buttons>
+      <ion-buttons slot="end">
+          <ion-button (click)="presentPopover($event1)">
+              <ion-icon name="ellipsis-vertical"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+ 
+     
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-fab  vertical="bottom" (click)="new()" horizontal="end" slot="fixed">
+    <ion-fab-button color="warning">
+        <ion-icon color="light" name="add"></ion-icon>
+    </ion-fab-button>
+</ion-fab>
+
+<!-- Menus disponible -->
+<ion-item button (click)="buttonClick()" padding>
+  <ion-label>
+    Menu tersedia
+  </ion-label>
+  <ion-badge (click)="circuler()" slot="end" color="primary">tampilkan semua</ion-badge>
+</ion-item>
+
+
+          <div class="flex">
+              <ion-card class="cartes md-card-bg">
+                    <img src="https://img.mobiscroll.com/demos/card_6.png">
+                    <h4 class="md-card-title mbsc-align-center">Cuisine africaine</h4>
+                    <h5 class="md-card-subtitle mbsc-align-center mbsc-bold">(63)</h5>
+              </ion-card>
+              <ion-card class="cartes md-card-bg">
+                <img src="https://img.mobiscroll.com/demos/card_6.png">
+                <h4 class="md-card-title mbsc-align-center">Dapur afrika</h4>
+                <h5 class="md-card-subtitle mbsc-align-center mbsc-bold">(63)</h5>
+          </ion-card>
+          <ion-card class="cartes md-card-bg">
+            <img src="https://img.mobiscroll.com/demos/card_6.png">
+            <h4 class="md-card-title mbsc-align-center">Dapur afrika</h4>
+            <h5 class="md-card-subtitle mbsc-align-center mbsc-bold">(63)</h5>
+      </ion-card>
+
+      <ion-card class="cartes md-card-bg">
+        <img src="https://img.mobiscroll.com/demos/card_6.png">
+        <h4 class="md-card-title mbsc-align-center">Dapur afrika</h4>
+        <h5 class="md-card-subtitle mbsc-align-center mbsc-bold">(63)</h5>
+  </ion-card>
+          </div>
+     
+</ion-content>

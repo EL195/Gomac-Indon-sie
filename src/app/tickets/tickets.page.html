@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+    </ion-buttons>
+    <ion-title>Tiket saya</ion-title>
+    <ion-buttons  slot="end">
+      <ion-button (click)="presentPopover($event1)">
+        <ion-icon name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content padding>
+  <ion-list>
+    <ion-item lines *ngFor="let info of principal">
+      <ion-badge slot="start">{{info.type}}</ion-badge>
+      <ion-label>{{info.itineraire}}</ion-label>
+      <ion-badge (click)="goTo(info.idReservation)" slot="end">Tampilkan tiket</ion-badge>
+    </ion-item>
+  </ion-list>
+</ion-content>

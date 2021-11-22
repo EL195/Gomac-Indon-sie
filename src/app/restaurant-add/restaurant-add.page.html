@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Restoran</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="view">
+        <ion-list>
+            <ion-item lines *ngFor="let sta of engin" (click)="redic(sta.nom)">
+                <ion-thumbnail slot="start">
+
+                    <ion-img [src]=sta.photo alt="Photo de Profil" *ngIf=" sta.photo != null"></ion-img>
+
+ 
+                    <ion-img [src]="'/assets/ava2.png'" alt="Photo de Profil" *ngIf="sta.photo == null"></ion-img>
+
+                </ion-thumbnail>
+                <ion-label><b>{{sta.nom}}</b></ion-label>
+            </ion-item>
+
+        </ion-list>
+    </div>
+    <div *ngIf="!view">
+        <ion-list>
+            <ion-item lines *ngFor="let sta of plat" (click)="redice(sta.id)">
+                <ion-thumbnail slot="start">
+
+                    <ion-img [src]=sta.logo alt="Photo de Profil" *ngIf=" sta.photo != null"></ion-img>
+
+
+                    <ion-img [src]="'/assets/ava2.png'" alt="Photo de Profil" *ngIf="sta.photo == null"></ion-img>
+
+                </ion-thumbnail>
+                <ion-label>
+                    <p><b>Nama</b>:{{sta.nom}}</p>
+                    <p><b>Tanggal</b>:{{sta.date.seconds * 1000 | date:'short'}}</p>
+                </ion-label>
+            </ion-item>
+
+        </ion-list>
+    </div>
+</ion-content>

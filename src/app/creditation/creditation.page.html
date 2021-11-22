@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Isi ulang</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs"> </ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+
+    <ion-list>
+        <ion-item lines="inset">
+            <ion-icon name="mail-unread" slot="start" color="primary"></ion-icon>
+
+            <ion-label position="floating"><b>Email penerima</b></ion-label>
+            <ion-input type="email" value={{credit.email}} [(ngModel)]="credit.email" required></ion-input>
+
+        </ion-item>
+        <ion-item lines="inset">
+            <ion-icon name="cash" slot="start" color="primary"></ion-icon>
+
+            <ion-label position="floating"><b>Jumlah</b></ion-label>
+            <ion-input type="number" value={{credit.somme}} [(ngModel)]="credit.somme" required></ion-input>
+
+        </ion-item>
+    </ion-list>
+    <ion-button expand="block" type="submit" color="primary" (click)="save()">Valider</ion-button>
+
+</ion-content>

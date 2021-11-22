@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"> </ion-back-button>
+    </ion-buttons>
+    <ion-title>Mon ticket</ion-title>
+    <ion-buttons  slot="end">
+      <ion-button (click)="presentPopover($event1)">
+        <ion-icon name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <br> <br>
+  <div class="card" style="text-align: center;">
+    <qrcode [qrdata]="code" [size]="300" [level]="'M'"></qrcode>
+    <h1>Nom du passager : {{info.nom}}</h1>
+    <p class="title">Place : {{info.place}}</p>
+    <p>prix : {{info.prix}}</p>
+    <p>Type : {{info.type}}</p>
+    <p>Id du voyage : {{info.idVoyage}}</p>
+    
+
+    <p><button>Ticket généré - A présenter en agence</button></p>
+  </div>
+
+
+</ion-content>

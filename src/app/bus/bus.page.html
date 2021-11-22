@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Enregistrer votre voyage</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-item>
+    <p text-justify>
+      Pour réserver un bus veuiller renseigner vos informations dans le formulaire ci-dessous.Vous pouvez aussi réserver votre bus sur <span style="color:red; font-size: 22px;font-weight: 900;" (click)="redirect()">Afitra en ligne.</span>
+    </p>
+  </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <form [formGroup]="complaintForm" (ngSubmit)="newComplaint()">
+
+
+            <ion-item>
+              <ion-label position="floating">Nom du passager</ion-label>
+              <ion-input formControlName="nomC" type="text" value={{nomc}}></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">CNI</ion-label>
+              <ion-input formControlName="cni" type="number" ></ion-input>
+            </ion-item>
+
+
+            <ion-item>
+              <ion-label position="floating">Téléphone</ion-label>
+              <ion-input formControlName="phone" type="number" value={{phony}}></ion-input>
+            </ion-item>
+
+
+            <ion-item>
+              <ion-label position="floating">Email</ion-label>
+              <ion-input formControlName="email" type="text" value={{emaily}}></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Date du voyage</ion-label>
+              <ion-datetime formControlName="depart" displayFormat="D MMM YYYY" min="2021" max="2099" ></ion-datetime>
+            </ion-item>
+
+
+            <ion-item>
+              <ion-label position="floating">Heure du voyage</ion-label>
+              <ion-datetime formControlName="heure" displayFormat="HH" ></ion-datetime>
+            </ion-item>
+
+
+            <ion-item>
+              <ion-label>Ville départ</ion-label>
+              <ion-select formControlName="villeDepart" value="default" okText="Valider" cancelText="Annuler">
+                <div *ngIf="!condense">
+                <ion-select-option value="Douala">Douala</ion-select-option>
+                <ion-select-option value="Bafoussam">Bafoussam</ion-select-option>
+                <ion-select-option value="Foumbam">Foumbam</ion-select-option>
+                <ion-select-option value="Foumbot">Foumbot</ion-select-option>
+                <ion-select-option value="Koutaba">Koutaba</ion-select-option>
+                <ion-select-option value="Mbouda">Mbouda</ion-select-option>
+                <ion-select-option value="Dschang">Dschang</ion-select-option></div>
+                <div *ngIf="condense">
+                    <div *ngFor="let items of parcour">
+                    <ion-select-option value={{items.id}}_{{items.nom}}>{{items.nom}}({{items.Region}})</ion-select-option></div>
+                </div>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Ville destinataire</ion-label>
+              <ion-select formControlName="sortie" value="default" okText="Valider" cancelText="Annuler">
+                <div *ngIf="!condense">
+                <ion-select-option value="Douala">Douala</ion-select-option>
+                <ion-select-option value="Bafoussam">Bafoussam</ion-select-option>
+                <ion-select-option value="Foumbam">Foumbam</ion-select-option>
+                <ion-select-option value="Foumbot">Foumbot</ion-select-option>
+                <ion-select-option value="Koutaba">Koutaba</ion-select-option>
+                <ion-select-option value="Mbouda">Mbouda</ion-select-option>
+                <ion-select-option value="Dschang">Dschang</ion-select-option></div>
+                <div *ngIf="condense">
+                    <div *ngFor="let item of parcour">
+                    <ion-select-option value={{item.id}}_{{item.nom}}>{{item.nom}}({{item.Region}})</ion-select-option></div>
+                </div>
+              </ion-select>
+            </ion-item>
+
+
+            <ion-item>
+              <ion-label>Type </ion-label>
+              <ion-select formControlName="type" value="default" okText="Valider" cancelText="Annuler">
+                <div *ngIf="!condense">
+                    <ion-select-option value="VIP">VIP</ion-select-option>
+                    <ion-select-option value="Classique">Classique</ion-select-option>
+                    <ion-select-option value="Zoom">Zoom</ion-select-option>
+            </div>
+                    <div *ngIf="condense">
+                        <div *ngFor="let itema of typique">
+                        <ion-select-option value={{itema.id}}_{{itema.nom}}>{{itema.nom}}</ion-select-option></div>
+                    </div>
+              </ion-select>
+            </ion-item>
+
+
+
+            <ion-row class="btn-div">
+              <ion-button [disabled]="complaintForm.invalid" type="submit" id="saveBtn" color="primary">
+                Réserver <ion-icon name="send"></ion-icon>
+              </ion-button>
+            </ion-row>
+          </form>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

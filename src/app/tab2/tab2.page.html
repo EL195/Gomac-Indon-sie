@@ -1,0 +1,158 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-segment (ionChange)="segmentChanged($event)" value="transac">
+            <ion-segment-button value="transac">
+                <ion-icon color="light" name="cart"></ion-icon>
+            </ion-segment-button>
+            <ion-segment-button value="course">
+                <ion-icon color="light" name="bicycle"></ion-icon>
+            </ion-segment-button>
+
+            <ion-segment-button value="commande">
+                <ion-icon color="light" name="fast-food"></ion-icon>
+            </ion-segment-button>
+
+            <ion-segment-button value="resev">
+                <ion-icon color="light" name="bus-sharp"></ion-icon>
+            </ion-segment-button>
+        </ion-segment>
+        <ion-buttons slot="end">
+            <ion-button (click)="presentPopover()">
+                <ion-icon name="ellipsis-vertical"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div *ngIf="con=='transac'">
+
+        <ion-card *ngFor="let sta of transiter">
+            <ion-item>
+                <ion-avatar slot="start">
+                    <ion-img [src]=sta.photo alt="Photo de Profil" *ngIf="sta.photo!=''"></ion-img>
+                    <ion-img [src]="'/assets/ava2.png'" alt="Photo de Profil" *ngIf="sta.photo==''"></ion-img>
+                </ion-avatar>
+                <ion-label color="primary">
+                    <ion-badge color="warning" slot="end" *ngIf="!sta.status">Encours</ion-badge>
+                </ion-label>
+                <ion-label color="primary">
+                    <ion-badge color="danger" slot="end" *ngIf="sta.status">Valider</ion-badge>
+                </ion-label>
+                <ion-button (click)="redice(sta.id)" size="small">
+                    <ion-icon slot="start" name="log-out-outline"></ion-icon>
+                    Consulter
+                </ion-button>
+            </ion-item>
+            <ion-row>
+                <ion-col>
+                    <div>
+                        <ion-badge color="warning" slot="end">{{sta.nom}} C</ion-badge>
+                    </div>
+                </ion-col>
+
+                <ion-col align-self-center text-center>
+                    <ion-note>
+                        <ion-badge color="light">{{sta.date.seconds * 1000 | date:'short'}}</ion-badge>
+                    </ion-note>
+                </ion-col>
+                <ion-col>
+                    <ion-badge *ngIf="sta.type=='Colis'" color="tertiary">{{sta.type}} </ion-badge>
+                    <ion-badge *ngIf="sta.type=='Course'" color="success">{{sta.type}} </ion-badge>
+
+                </ion-col>
+            </ion-row>
+        </ion-card>
+
+    </div>
+    <div *ngIf="con=='course'">
+        <ion-card *ngFor="let sta of transport" class="cartesss">
+            <ion-item>
+                <ion-avatar slot="start">
+                    <ion-img [src]=sta.photo alt="Photo de Profil" *ngIf="sta.photo!=''"></ion-img>
+                    <ion-img [src]="'/assets/ava2.png'" alt="Photo de Profil" *ngIf="sta.photo==''"></ion-img>
+                </ion-avatar>
+                <ion-label color="primary">{{sta.depart}} - {{sta.arrive}}</ion-label>
+                <ion-button (click)="redic(sta.id)" size="small">
+                    <ion-icon slot="start" name="log-out-outline"></ion-icon>
+                    Consulter
+                </ion-button>
+            </ion-item>
+            <ion-row>
+                <ion-col>
+                    <div>
+                        <ion-badge color="warning" slot="end">{{sta.prix}} C</ion-badge>
+                    </div>
+                </ion-col>
+                <ion-col>
+                    <div>{{gps.calculateDistance(sta.departlat,this.profil.lat,sta.departlong,profil.long)|number:'1.1-2'}}km </div>
+                </ion-col>
+                <ion-col align-self-center text-center>
+                    <ion-note>
+                        <ion-badge color="light">{{sta.date.seconds * 1000 | date:'short'}}</ion-badge>
+                    </ion-note>
+                </ion-col>
+                <ion-col>
+                    <ion-badge *ngIf="sta.type=='Colis'" color="tertiary">{{sta.type}} </ion-badge>
+                    <ion-badge *ngIf="sta.type=='Course'" color="success">{{sta.type}} </ion-badge>
+
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </div>
+    <div *ngIf="con=='commande'">
+        <ion-card *ngFor="let sta of commanderie" class="cartesss">
+            <ion-item>
+                <ion-avatar slot="start">
+                    <ion-img [src]=sta.photo alt="Photo de Profil" *ngIf="sta.photo!=''"></ion-img>
+                    <ion-img [src]="'/assets/ava2.png'" alt="Photo de Profil" *ngIf="sta.photo==''"></ion-img>
+                </ion-avatar>
+                <ion-label color="primary">
+                    <ion-badge color="warning" slot="end" *ngIf="!sta.status">Encours</ion-badge>
+                </ion-label>
+                <ion-label color="primary">
+                    <ion-badge color="danger" slot="end" *ngIf="sta.status">Valider</ion-badge>
+                </ion-label>
+
+                <ion-button (click)="redice(sta.id)" size="small">
+                    <ion-icon slot="start" name="log-out-outline"></ion-icon>
+                    Verifikasi
+                </ion-button>
+            </ion-item>
+            <ion-row>
+                <ion-col>
+                    <div>
+                        <ion-badge color="warning" slot="end">{{sta.nom}} C</ion-badge>
+                    </div>
+                </ion-col>
+
+                <ion-col align-self-center text-center>
+                    <ion-note>
+                        <ion-badge color="light">{{sta.date.seconds * 1000 | date:'short'}}</ion-badge>
+                    </ion-note>
+                </ion-col>
+                <ion-col>
+                    <ion-badge *ngIf="sta.type=='Colis'" color="tertiary">{{sta.type}} </ion-badge>
+                    <ion-badge *ngIf="sta.type=='Course'" color="success">{{sta.type}} </ion-badge>
+
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </div>
+
+    <div *ngIf="con=='resev'">
+
+        <ion-item lines="inset" *ngFor="let sta of resrv">
+            <ion-icon name="person" slot="start" color="primary"></ion-icon>
+            <ion-label>
+                <p> <b>Rute</b>:<span [innerHTML]="sta.iti">{{sta.iti}} </span></p>
+                <p><b>Jenis servis</b>: <span [innerHTML]="sta.service">{{sta.service}} </span> {{sta.type}} </p>
+                <p> <b>Le</b>:{{sta.dateDepart.seconds * 1000 | date:'short'}}</p>
+            </ion-label>
+
+
+        </ion-item>
+
+    </div>
+</ion-content>

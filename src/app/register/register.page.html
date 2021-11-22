@@ -1,0 +1,84 @@
+
+<ion-content padding class="background-image">
+  <ion-grid>
+    <ion-row center>
+      <ion-col>
+
+      </ion-col>
+      <ion-col>
+        <ion-img style="width: 100px; height: 100px;" src="assets/img/GoSmartLogo.png"></ion-img>
+      </ion-col>
+      <ion-col>
+
+      </ion-col>
+  </ion-row>
+  </ion-grid>
+  <ion-text><h3 class="title">Silahkan isi formulir berikut untuk daftar ...</h3></ion-text>
+  <ion-grid>
+ 
+
+    <ion-row>
+      <ion-col>
+        <ion-input clearInput type="email" placeholder="Adresse électronique" [(ngModel)]="profil.email" class="input" padding-horizontal></ion-input>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col>
+        <ion-input clearInput type="password" placeholder="Mot de passe" [(ngModel)]="profil.password" class="input" padding-horizontal></ion-input>
+      </ion-col>
+    </ion-row>
+
+
+
+
+    <ion-row>
+      <ion-col>
+        <ion-input clearInput type="password" placeholder="Confirmation Mot de passe" [(ngModel)]="profil.repassword" class="input" padding-horizontal></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label>Pilih profil anda</ion-label>
+              <ion-select [(ngModel)]="profil.status" value="default" okText="Valider" cancelText="Annuler" required>
+                <ion-select-option value="Client">Custumer</ion-select-option>
+                <ion-select-option value="Conducteur">Sopir</ion-select-option>
+                <ion-select-option value="Boutique">Toko</ion-select-option>
+                <ion-select-option value="Restaurant">Restoran</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-checkbox ></ion-checkbox>
+          <ion-text text-center color="medium"><h6 no-margin class="small">Saya setuju dengan<a (click)="term()">syarat penggunaan</a> dan <a (click)="policy()">kondisi kerahasiaan</a></h6></ion-text>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" (click)="signup()" color="primary"><strong class="white">Pendaftaran</strong></ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+          <ion-text class="error" text-center>{{error}}</ion-text>
+      </ion-col>
+  </ion-row>
+
+    <div class="line"></div>
+    <ion-row>
+      <ion-col>
+        <ion-text text-center color="danger"><h6 no-margin class="small"> <a (click)="login()">Sudah punya akun ?</a></h6></ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-text text-center color="primary"><h6 no-margin class="small"> <a (click)="visit()">Lanjut kunjungan ?</a></h6></ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

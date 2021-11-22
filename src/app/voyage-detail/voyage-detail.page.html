@@ -1,0 +1,91 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+        </ion-buttons>
+        <ion-title>Pesan</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="presentPopover()">
+                <ion-icon name="ellipsis-vertical"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+ 
+    <ion-card>
+        <ion-card-header>
+            <ion-item>
+                <ion-avatar click="goToAgence(info.idVoyage)" slot="start">
+                    <img src="{{info.image}}">
+                </ion-avatar>
+                <ion-label>{{info.agence}}</ion-label>
+            </ion-item>
+            <ion-card-subtitle>Tanggal : </ion-card-subtitle>
+            <ion-card-title>{{info.depart}} - {{info.arrivee}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-item>
+                <ion-badge slot="start" color="primary">{{info.prix}}</ion-badge>
+                <ion-label>
+                    <ion-icon name="person-add-outline"></ion-icon>
+                    {{info.place}}</ion-label>
+                <ion-label>
+                    <ion-icon name="person-remove-outline"></ion-icon>
+                    {{info.place-info.restePlaces}}</ion-label>
+                <ion-button fill="outline" slot="end">{{info.type}}</ion-button>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-grid padding>
+        <ion-row *ngIf="placeUser==''">
+            <ion-col>
+                <ion-button (click)="placeShow(info.idVoyage)" color="primary">Tampilkan seat</ion-button>
+            </ion-col>
+            <ion-col>
+
+                <ion-input clearInput type="number" placeholder="Votre place" [(ngModel)]="place" class="input" padding-horizontal></ion-input>
+            </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="placeUser!=''">
+            <ion-input clearInput type="number" value="{{placeUser}}" placeholder="Nombre de  place" [(ngModel)]="place" class="input" padding-horizontal></ion-input>
+        </ion-row>
+
+
+    </ion-grid>
+
+
+    <ion-card>
+        <ion-card-header>
+            <ion-item click="profila()">
+                <ion-avatar slot="start">
+                    <img src="{{image}}">
+                </ion-avatar>
+                <ion-label>{{nom}}</ion-label>
+            </ion-item>
+            <ion-card-subtitle>Saldo saya saat ini: {{credit}} </ion-card-subtitle>
+            <ion-card-subtitle>Saldo saya sesudah validasi : {{reste}} </ion-card-subtitle>
+            <ion-card-subtitle (click)="validate()" *ngIf="besoin==true">
+                <ion-badge color="primary">Minta transfer saldo</ion-badge>
+            </ion-card-subtitle>
+
+        </ion-card-header>
+    </ion-card>
+
+    <ion-grid padding>
+        <ion-row *ngIf="besoin!=true">
+            <ion-col>
+                <ion-input clearInput type="password" placeholder="Votre PIN" [(ngModel)]="pin" class="input" padding-horizontal></ion-input>
+
+            </ion-col>
+            <ion-col>
+                <ion-button (click)="validate()" color="primary">Validasi</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

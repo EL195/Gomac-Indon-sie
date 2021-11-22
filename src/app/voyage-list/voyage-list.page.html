@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar  color="primary">
+    <ion-title>Voyages</ion-title>
+    <ion-buttons  slot="end">
+      <ion-button (click)="presentPopover($event1)">
+        <ion-icon name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-calls></app-calls>
+  <div *ngIf="connect!=false ">
+    <div *ngIf="role=='Agence'">
+      <ion-fab *ngIf="boutique==false" vertical="bottom" (click)="CreateAgence()" horizontal="end" slot="fixed">
+        <ion-fab-button color="primary">
+            <ion-icon color="light" name="home-outline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    
+    <ion-fab *ngIf="boutique==true" vertical="bottom" (click)="CreateVoyage()" horizontal="end" slot="fixed">
+        <ion-fab-button color="primary">
+            <ion-icon color="light" name="bus-outline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    </div>
+   
+
+    <ion-fab *ngIf="role=='Client'" vertical="bottom" (click)="SearchVoyage()" horizontal="end" slot="fixed">
+        <ion-fab-button color="primary">
+            <ion-icon color="light" name="search"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</div>
+
+
+
+
+</ion-content>

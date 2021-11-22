@@ -1,0 +1,27 @@
+<ion-header>
+        <ion-toolbar color="primary">
+            <ion-title>Kendaraan</ion-title>
+           
+            <ion-buttons  slot="end" (click)="solde()">
+                <ion-icon slot="icon-only" name="cash"></ion-icon>
+                <ion-badge color="warning" style="position: absolute; right: 15px; top: -5px;">{{credit}} C</ion-badge>
+            </ion-buttons>
+           
+            <ion-buttons slot="end">
+                <ion-button (click)="presentPopover($event1)">
+                    <ion-icon name="ellipsis-vertical"></ion-icon>
+                </ion-button> 
+            </ion-buttons>
+            <ion-buttons slot="start">
+                <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+            </ion-buttons>
+        </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+    <ion-slides #slider pager="false" (ionSlideWillChange)="slideChanged()" [options]="slideOpts">
+        <app-chats></app-chats>
+ 
+    </ion-slides>
+</ion-content>

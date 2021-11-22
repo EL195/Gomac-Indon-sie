@@ -1,0 +1,205 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Toko</ion-title>
+
+        <ion-buttons slot="end" (click)="solde()">
+            <ion-icon slot="icon-only" name="cash"></ion-icon>
+            <ion-badge color="warning" style="position: absolute; right: 15px; top: -5px;" *ngIf="profil">{{profil.credit}}</ion-badge>
+        </ion-buttons>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="presentPopover()">
+                <ion-icon name="ellipsis-vertical"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+    <div *ngIf="view == true">
+        <ion-item button padding>
+            <ion-label>
+                Kategori
+            </ion-label>
+            <ion-badge (click)="categories()" slot="end" color="primary">Tampilkan semua</ion-badge>
+        </ion-item>
+
+        <ion-slides pager="true" [options]="slideOpts">
+            <ion-slide *ngFor="let s of Categorie">
+
+
+                <ion-card (click)="categoriesvoir(s.nom)">
+                    <ion-card-header>
+                        <ion-img style="height:127px!important;" [src]=s.photo></ion-img>
+                        <ion-label>
+                            <h4>{{s.nom}}</h4>
+                        </ion-label>
+                    </ion-card-header>
+                </ion-card>
+            </ion-slide>
+        </ion-slides>
+        <ion-item button padding>
+            <ion-label>
+                Toko kami
+            </ion-label>
+            <ion-badge (click)="circuler()" slot="end" color="primary">Tampilkan semua</ion-badge>
+        </ion-item>
+
+        <ion-slides pager="true" #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
+            <ion-slide>
+                <div class="flex">
+                    <ion-card class="cartes md-card-bg" *ngFor="let boutique of boutiquesk" (click)="voirBout(boutique.id)">
+                        <ion-img [src]=boutique.data.logo></ion-img>
+                        <h4 class="md-card-title mbsc-align-center">{{boutique.data.nom}}</h4>
+                    </ion-card>
+
+                </div>
+            </ion-slide>
+        </ion-slides>
+
+        <ion-item button padding>
+            <ion-label>
+              Produkt baru
+            </ion-label>
+            <ion-badge (click)="circule()" slot="end" color="primary">Tampilkan semua</ion-badge>
+        </ion-item>
+
+        <ion-slides pager="true" #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
+            <ion-slide>
+                <div class="flex">
+                    <ion-card class="cartes md-card-bg" *ngFor="let boutique of produitk" (click)="voirPro(boutique.id)">
+                        <ion-img [src]=boutique.data.photo></ion-img>
+                        <h4 class=" md-card-title mbsc-align-center ">{{boutique.data.nom}}</h4>
+                        <h5 class="md-card-subtitle mbsc-align-center mbsc-bold ">
+                            <ion-badge color="primary"> {{boutique.data.prix}} C</ion-badge>
+                           </h5>
+                    </ion-card>
+
+                </div>
+            </ion-slide>
+        </ion-slides>
+
+
+        <ion-item button padding>
+            <ion-label>
+               Barang paling laku
+            </ion-label>
+
+        </ion-item>
+
+        <ion-slides pager="true " #slides (ionSlideDidChange)="slideChanged() " scrollbar="true ">
+            <ion-slide>
+                <div class="flex">
+                    <ion-card class="cartes md-card-bg " *ngFor="let boutique of commandek " (click)="voirPro(boutique.data.produit)">
+                        <ion-img [src]=boutique.data.photo></ion-img>
+                        <h4 class="md-card-title mbsc-align-center ">{{boutique.data.nom}}</h4>
+                        <ion-badge color="primary"> {{boutique.data.prix}} C</ion-badge>
+                    </ion-card>
+
+                </div>
+            </ion-slide>
+        </ion-slides>
+
+    </div>
+    <div *ngIf="view==false ">
+
+
+        <ion-card>
+            <ion-card-header>
+                <img heigth="4px " src={{restoration.logo}}>
+
+            </ion-card-header>
+
+        </ion-card>
+
+
+
+
+        <ion-row>
+            <ion-col>
+
+                <ion-button (click)="photosave() " color="primary ">
+                    Foto
+                    <ion-icon name="camera "></ion-icon>
+                </ion-button>
+            </ion-col>
+            <ion-col>
+                <ion-button (click)="photoprofil() " color="tertiary ">
+                   Gambar bergulir
+                    <ion-icon name="camera "></ion-icon>
+                </ion-button>
+
+            </ion-col>
+        </ion-row>
+
+
+        <ion-list>
+            <ion-item lines="inset ">
+                <ion-icon name="person " slot="start " color="primary "></ion-icon>
+
+                <ion-label position="floating "><b>Nama</b></ion-label>
+                <ion-input value={{restoration.nom}} [(ngModel)]="restoration.nom " required></ion-input>
+
+            </ion-item>
+
+            <ion-item lines="inset ">
+                <ion-icon name="call " slot="start " color="primary "></ion-icon>
+
+
+                <ion-label position="floating "><b>Telpon</b></ion-label>
+                <ion-input value={{restoration.tel}} [(ngModel)]="restoration.tel " required></ion-input>
+
+
+            </ion-item>
+
+            <ion-item lines="inset ">
+                <ion-icon name="airplane " slot="start " color="primary "></ion-icon>
+
+                <ion-label position="floating "><b>Negara</b></ion-label>
+                <ion-input value={{restoration.pays}} [(ngModel)]="restoration.pays " required></ion-input>
+
+            </ion-item>
+            <ion-item lines="inset ">
+                <ion-icon name="bus " slot="start " color="primary "></ion-icon>
+
+                <ion-label position="floating "><b>Kabupaten</b></ion-label>
+                <ion-input value={{restoration.departement}} [(ngModel)]="restoration.departement " required></ion-input>
+
+            </ion-item>
+            <ion-item lines="inset ">
+                <ion-icon name="car-sport " slot="start " color="primary "></ion-icon>
+
+                <ion-label position="floating "><b>Ville</b></ion-label>
+                <ion-input value={{restoration.ville}} [(ngModel)]="restoration.ville " required></ion-input>
+
+            </ion-item>
+            <ion-item lines="inset ">
+                <ion-icon name="home " slot="start " color="primary "></ion-icon>
+
+                <ion-label position="floating "><b>Wilayah</b></ion-label>
+                <ion-input value={{restoration.quartier}} [(ngModel)]="restoration.quartier " required></ion-input>
+
+            </ion-item>
+
+
+
+            <ion-item lines="inset ">
+                <ion-icon name="home " slot="start " color="primary "></ion-icon>
+                <ion-label position="floating "><b>Jenis</b></ion-label>
+
+                <ion-select [(ngModel)]="restoration.categorie " okText="Okay " cancelText="Dismiss ">
+                    <ion-select-option value={{sta.nom}} *ngFor="let sta of Categorie ">{{sta.nom}}</ion-select-option>
+
+                </ion-select>
+            </ion-item>
+
+        </ion-list>
+
+        <ion-button type="submit " expand="block " color="primary " (click)="save() ">Validasi</ion-button>
+
+
+
+    </div>
+</ion-content>

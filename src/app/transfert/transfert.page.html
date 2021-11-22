@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Transfer</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs"> </ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+
+    <ion-list>
+        <ion-item lines="inset">
+            <ion-icon name="mail-unread" slot="start" color="primary"></ion-icon>
+
+            <ion-label position="floating"><b>Email penerima</b></ion-label>
+            <ion-input type="email" value={{credit.email}} [(ngModel)]="credit.email" required></ion-input>
+
+        </ion-item>
+
+        <ion-item lines="inset">
+            <ion-icon name="cash" slot="start" color="primary"></ion-icon>
+
+            <ion-label position="floating"><b>Jumlah</b></ion-label>
+            <ion-input type="number" value={{credit.somme}} [(ngModel)]="credit.somme" required></ion-input>
+
+        </ion-item>
+        <ion-item lines="inset">
+            <ion-icon name="lock-closed" slot="start" color="primary"></ion-icon>
+
+            <ion-label position="floating"><b>Kode pin anda</b></ion-label>
+            <ion-input type="password" value={{credit.pin}} [(ngModel)]="credit.pin" required></ion-input>
+
+        </ion-item>
+    </ion-list>
+    <ion-row>
+        <ion-col>
+            <b> Saldo saat ini :</b> <span>{{gt}} </span> C
+        </ion-col>
+        <ion-col>
+            <b>Sesudah Transfer :</b>{{gt - credit.somme}} C
+        </ion-col>
+    </ion-row>
+    <div *ngIf="gt>=credit.somme">
+        <ion-button expand="block" type="submit" color="primary" (click)="save()">Validasi</ion-button>
+    </div>
+
+</ion-content>

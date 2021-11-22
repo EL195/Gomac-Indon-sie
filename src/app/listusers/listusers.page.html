@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Activer un compte</ion-title>
+    </ion-toolbar>
+    <ion-searchbar showcancelbutton="" animated (ionInput)="filterList($event)"></ion-searchbar>
+  </ion-header>
+
+  <ion-content>
+
+      <ion-list>
+
+          <div *ngFor="let sta of plati">
+
+
+                  <ion-item>
+                      <ion-avatar slot="start">
+                          <ion-img [src]=sta.photo alt="Photo de Profil" *ngIf="sta.photo!=''"></ion-img>
+                          <ion-img [src]="'/assets/ava2.png'" alt="Photo de Profil" *ngIf="sta.photo==''"></ion-img>
+                      </ion-avatar>
+                      <ion-label color="primary">{{sta.nom}} - {{sta.prenom}}</ion-label>
+                      <ion-button (click)="redic(sta.id)" size="small">
+                          <ion-icon slot="start" name="log-out-outline"></ion-icon>
+                          Activer
+                      </ion-button>
+                  </ion-item>
+                  <ion-row>
+                      <ion-col>
+                          <div>
+                              <ion-badge color="warning" slot="end">{{sta.visible}} </ion-badge>
+                          </div>
+                      </ion-col>
+                      <ion-col>
+                          <div> </div>
+                      </ion-col>
+
+                      <ion-col align-self-center text-center>
+                          <ion-note>
+                              <ion-badge color="light">{{sta.status}}</ion-badge>
+                          </ion-note>
+                      </ion-col>
+
+                  </ion-row>
+
+
+          </div>
+      </ion-list>
+  </ion-content>

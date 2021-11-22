@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Kirim pesan ke kami</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs"> </ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+    <ion-item>
+        <p text-justify>
+            Pertanyaan ? catatan ? Masalah ? kirim pesan kepada kami.
+        </p>
+      </ion-item>
+        <h4 class="ion-text-center"><strong>Hubungi kami!</strong></h4>
+    <ion-list>
+        <ion-item lines="inset">
+            <ion-icon name="golf-outline" slot="start" color="primary"></ion-icon>
+
+            <ion-label position="floating"><b>Obyek pesan</b></ion-label>
+            <ion-input type="text" value={{credit.objet}} [(ngModel)]="credit.objet" required></ion-input>
+
+        </ion-item>
+        <ion-item lines="inset">
+            <ion-icon name="newspaper-outline" slot="start" color="primary"></ion-icon>
+
+            <ion-label position="floating"><b>Pesan</b></ion-label>
+
+            <ion-textarea value={{credit.content}} [(ngModel)]="credit.content" required placeholder="Enter more information here..."></ion-textarea>
+
+
+        </ion-item>
+    </ion-list>
+    <ion-button expand="block" type="submit" color="primary" (click)="save()">Kirim</ion-button>
+</ion-content>

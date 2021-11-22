@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar  color="primary">
+    <ion-title>{{titre}}</ion-title>
+    <ion-buttons  slot="end">
+      <ion-button (click)="presentPopover($event1)">
+        <ion-icon name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab  *ngIf="own!=true" vertical="bottom" (click)="CreateVoyage()" horizontal="end" slot="fixed">
+      <ion-fab-button color="primary">
+          <ion-icon color="light" name="bus-outline"></ion-icon>
+      </ion-fab-button>
+  </ion-fab>
+  <ion-fab *ngIf="role!='Agence'" vertical="bottom" (click)="SearchVoyage()" horizontal="end" slot="fixed">
+      <ion-fab-button color="primary">
+          <ion-icon color="light" name="search"></ion-icon>
+      </ion-fab-button>
+  </ion-fab>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{titre}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <img src="{{couverture}}" />
+    </ion-card-content>
+    <ion-badge  (click)="agenceModify()" color="primary">
+     Ubah Agen Bus</ion-badge>
+    <ion-card-content>
+     {{desc}}.
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card  *ngFor="let info of principal">
+  <ion-item>
+    <ion-avatar item-start>
+      <img src="{{info.image}}">
+    </ion-avatar>
+    <ion-label color="primary">{{info.depart}} - {{info.arrivee}}</ion-label>
+    <ion-button *ngIf="own==false" (click)="showDetail(info.idVoyage)" size="small">
+      <ion-icon slot="start" name="log-out-outline"></ion-icon>
+      Pesan
+    </ion-button>
+    <ion-button *ngIf="own!=false" (click)="edit(info.idVoyage)" size="small">
+      <ion-icon slot="start" name="log-out-outline"></ion-icon>
+      Ubah
+    </ion-button>
+  </ion-item>
+  <ion-row>
+    <ion-col>
+      <ion-icon name="cash"></ion-icon>
+        <div>{{info.prix}} </div>
+    </ion-col>
+    <ion-col>
+      <ion-icon name="person-add-outline"></ion-icon>
+        <div>{{info.place}} </div>
+    </ion-col>
+    <ion-col align-self-center text-center>
+      <ion-note>
+        <div>Keberangkatan</div>
+        <ion-badge color="light">{{info.dateDepart.seconds * 1000 | date: 'dd-MM-yyyy'}}</ion-badge>
+      </ion-note>
+    </ion-col>
+    <ion-col>
+      <div>Jenis</div>
+      <ion-badge color="primary">{{info.type}} </ion-badge>
+    </ion-col>
+  </ion-row>
+</ion-card>
+</ion-content>

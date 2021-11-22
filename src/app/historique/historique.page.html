@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Historique de Compte</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs"> </ion-back-button>
+
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item lines="inset" *ngFor="let sta of notifions">
+            <ion-icon name="person" slot="start" color="primary"></ion-icon>
+            <ion-label>
+                <p> <b>Objet</b>:<span [innerHTML]="sta.objet">{{sta.objet}} </span></p>
+                <p><b>Montant</b>: <span [innerHTML]="sta.montant">{{sta.montant}} </span> </p>
+                <p> <b>Le</b>:{{sta.date.seconds * 1000 | date:'short'}}</p>
+            </ion-label>
+
+
+        </ion-item>
+    </ion-list>
+</ion-content>

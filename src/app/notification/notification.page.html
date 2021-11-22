@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Notifikasi saya</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs" *ngIf="vef==false"> </ion-back-button>
+            <ion-back-button defaultHref="/notification" *ngIf="vef==true"> </ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+  
+<ion-content>
+    <div *ngIf="vef==false">
+        <ion-list>
+            <ion-item lines="inset" *ngFor="let sta of notifions" (click)="redic(sta.id)">
+       
+
+                <ion-icon name="notifications-circle-outline" slot="start" color="primary"></ion-icon>
+                <ion-label>
+                    <p> <b>Obyek</b>:<span [innerHTML]="sta.objet">{{sta.objet}} </span></p>
+
+                    <p> <b>Le</b>:{{sta.date.seconds * 1000 | date:'short'}}</p>
+                </ion-label>
+
+                <ion-badge *ngIf=" sta.status ==true" color="danger" slot="end">Lu</ion-badge>
+                <ion-badge *ngIf=" sta.status ==false" color="success" slot="end">Belum dibaca</ion-badge>
+
+            </ion-item>
+        </ion-list>
+    </div>
+    <div *ngIf="vef==true">
+        <ion-card class="cartesss">
+            <ion-card-subtitle>
+                <ion-badge color="primary"> {{element.date.seconds * 1000 | date:'short'}}</ion-badge>
+               
+            </ion-card-subtitle>
+            <ion-card-header>
+                <h4> <b>{{element.objet}}</b></h4>
+            </ion-card-header>
+            <ion-card-content>
+                {{element.message}}.
+            </ion-card-content>
+        </ion-card>
+    </div>
+</ion-content>

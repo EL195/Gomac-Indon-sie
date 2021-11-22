@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Reservasi saya</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="presentPopover($event1)">
+                <ion-icon name="ellipsis-vertical"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+    <ion-searchbar showcancelbutton="" animated (ionInput)="filterList($event)"></ion-searchbar>
+    <ion-list>
+        <ion-item *ngFor="let info of principal">
+            <ion-badge slot="start">{{info.type}}</ion-badge>
+            <ion-label>
+                <p>
+                    <b>Jalan</b>: {{info.iti}}
+                </p>
+                <p><b>Nama</b>:{{info.nom}}</p>
+                <p><b>Tanggal</b>:{{info.dateDepart.seconds * 1000 | date:'short'}}</p>
+            </ion-label>
+
+            <ion-badge slot="end">{{info.prix}}</ion-badge>
+        </ion-item>
+    </ion-list>
+</ion-content>

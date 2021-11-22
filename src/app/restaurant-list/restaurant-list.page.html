@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Pesanan</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+        </ion-buttons>
+
+ 
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="food.photo && food.photo !=''">
+
+        <img heigth="4px" width="100%" src={{food.photo}}>
+
+    </div>
+    <ion-item>
+        <ion-thumbnail slot="start" *ngIf="profil.photo && profil.photo !=''">
+            <img src={{profil.photo}}>
+        </ion-thumbnail>
+        <ion-label>
+            <p> <b>Nama pelanggan:</b>{{profil.nom}}</p>
+            <p> <b>Telpon pelanggan:</b>{{profil.tel}}</p>
+            <p> <b>Wilayah pelanggan:</b>{{profil.secteur}}</p>
+        </ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-thumbnail slot="start" *ngIf="restau.photo && restau.photo !=''">
+            <img src={{restau.photo}}>
+        </ion-thumbnail>
+        <ion-label>
+            <p> <b>Nama :</b>{{restau.nom}}</p>
+            <p> <b>Telpon :</b>{{restau.tel}}</p>
+            <p> <b>Jenis :</b>{{restau.type}}</p>
+            <p> <b>Wilayah :</b>{{restau.secteur}}</p>
+        </ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-thumbnail slot="start" *ngIf="produit.photo && produit.photo !=''">
+            <img src={{produit.photo}}>
+        </ion-thumbnail>
+        <ion-label>
+            <p> <b>Nama barang:</b>{{produit.nom}}</p>
+
+            <p> <b>Jenis barang:</b>{{produit.type}}</p>
+
+            <p> <b>Harga barang:</b>{{produit.prix}} C</p>
+            <p *ngIf="produit.promo && produit.promo !=0"> <b>Promo barang:</b>{{produit.promo}}</p>
+        </ion-label>
+    </ion-item>
+
+</ion-content>

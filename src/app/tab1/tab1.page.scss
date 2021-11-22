@@ -1,0 +1,94 @@
+.services{
+    background-color: white;
+    border: 0.5px solid #C8C3C3;
+    border-radius:5px;
+    height: 100px;
+
+}
+
+.cartess {
+    width: 46%;
+    margin: 7px;
+    border: 1px solid #242750;
+    border-radius:5px;
+}
+
+.cartesss {
+    border: 1px solid #242750;
+    border-radius:5px;
+}
+
+.chop{
+    background-color: transparent;
+}
+
+.card-content-md {
+    padding-left: unset;
+    padding-right: unset;
+    -webkit-padding-start: 0px; 
+    padding-inline-start: 0px; 
+    -webkit-padding-end: 0px; 
+    padding-inline-end: 16px;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cartes {
+    width: 46%;
+    margin: 7px;
+}
+
+ion-card.ion-color .ion-inherit-color, ion-card-header.ion-color .ion-inherit-color {
+    color: inherit;
+    padding: 0px;
+}
+
+.labess {
+    color:#242750;
+}
+
+.owner {
+    color:white;
+}
+
+.small{
+    font-size: 12px;
+}
+
+
+ion-card.adv-map p {
+    font-size: 0.7em !important;
+  }
+  
+  button[fab].fab-map {
+    top: calc(100% - 35px);
+    z-index: 50;
+  }
+  .centered{
+      text-align: center!important;
+      display: inline-block;
+  }
+  
+  .item-bold {
+    font-weight: bold;
+  }
+  
+  ion-content.cards-bg {
+    background-color: #f4f4f7;
+  }
+  .background-image{
+    --background: url(/assets/bac.jpg) 0 0/100% 100% no-repeat;
+}
+  ion-card-content{
+      text-align: center;
+      padding: 10px;
+  }
+
+  ion-avatar{
+    text-align: center;
+    justify-content: center;
+  }

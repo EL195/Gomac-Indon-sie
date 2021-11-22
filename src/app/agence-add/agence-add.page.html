@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Nouvelle agence</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"> </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+        <div *ngIf="agence.photoURL else defaultPhoto">
+            <ion-img [src]="agence.photo" alt="Photo de Profil"></ion-img>
+        </div>
+        <ng-template #defaultPhoto>
+          <ion-img [src]="'/assets/img/GoSmartLogo.png'" alt="Photo de Profil"></ion-img>
+        </ng-template>
+    </ion-card-header>
+  </ion-card>
+  <ion-button expand="block" color="primary" (click)="takePic()">Appliquer le logo de l' agence</ion-button>
+<ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-input clearInput type="text" placeholder="Libellé de l' agence" [(ngModel)]="agence.nom" class="input" padding-horizontal></ion-input>
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row>
+      <ion-col>
+        <ion-textarea [(ngModel)]="agence.description" placeholder="Plus d'informations sur votre agence ici..." padding-horizontal></ion-textarea>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-input clearInput type="email" placeholder="email de l' agence" [(ngModel)]="agence.email" class="input" padding-horizontal></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-input clearInput type="number" placeholder="Contact de l' agence" [(ngModel)]="agence.tel" class="input" padding-horizontal></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" (click)="save()" color="primary"><strong class="white">Ajouter</strong></ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+          <ion-text class="error" text-center>{{error}}</ion-text>
+      </ion-col>
+  </ion-row>
+  </ion-grid>
+</ion-content>

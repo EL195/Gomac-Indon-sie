@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-title>Réservations</ion-title>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/tabs"> </ion-back-button>
+
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list >
+    <ion-list-header>
+      Récentes réservations
+    </ion-list-header>
+
+    <ion-item *ngFor="let info of principal">
+      <ion-badge slot="start" color="primary">{{info.service}}</ion-badge>
+      <ion-label>
+        <h2>{{info.Passager}}</h2> 
+        <p *ngIf="info.visible==false" style="color:green;">Déjà validé</p>  
+        <p *ngIf="info.visible==true" style="color:red;">A valider</p>  
+      </ion-label>
+      <ion-badge (click)="showDetail(info.idreservation)" slot="end" color="warning">Afficher</ion-badge>
+    </ion-item>
+    </ion-list>
+</ion-content>

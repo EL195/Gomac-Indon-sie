@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Villes disponibles</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"> </ion-back-button>
+    </ion-buttons>
+    <ion-buttons  slot="end">
+      <ion-button (click)="presentPopover($event1)">
+        <ion-icon name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+  <ion-item lines="full" *ngFor="let info of principal">
+    <ion-label>
+      {{info.libelle}}
+    </ion-label>
+  </ion-item>
+</ion-list>
+  <ion-fab 
+     vertical="bottom" (click)="goTo()" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary">
+      <ion-icon color="light" name="create"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

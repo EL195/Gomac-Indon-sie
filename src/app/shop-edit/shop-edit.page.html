@@ -1,0 +1,429 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title *ngIf="affichage">{{restoration.nom}}</ion-title>
+
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="affichage">
+        <div *ngIf="derange!=null && derange==restoration.idBoutique">
+            <div *ngIf="restoration.logo && restoration.logo !=''">
+                <img heigth="4px" width="100%" src={{restoration.logo}}>
+            </div>
+            <div *ngIf="restoration.photo.length>=1">
+                <ion-slides pager="true" [options]="slideOpts">
+                    <ion-slide *ngFor="let s of restoration.photo">
+
+
+
+                        <img heigth="4px" width="100%" src={{s}}>
+
+  
+
+
+
+                    </ion-slide>
+
+
+                </ion-slides>
+            </div>
+
+
+            <ion-row>
+                <ion-col>
+
+                    <ion-button (click)="photosave()" color="primary">
+                        Foto
+                        <ion-icon name="camera"></ion-icon>
+                    </ion-button>
+                </ion-col>
+                <ion-col>
+                    <ion-button (click)="photoprofil()" color="tertiary">
+                        Gambar bergulir
+                        <ion-icon name="camera"></ion-icon>
+                    </ion-button>
+
+                </ion-col>
+            </ion-row>
+
+
+            <ion-list>
+                <ion-item lines="inset">
+                    <ion-icon name="person" slot="start" color="primary"></ion-icon>
+
+                    <ion-label position="floating"><b>Nama</b></ion-label>
+                    <ion-input value={{restoration.nom}} [(ngModel)]="restoration.nom" required></ion-input>
+
+                </ion-item>
+
+                <ion-item lines="inset">
+                    <ion-icon name="call" slot="start" color="primary"></ion-icon>
+
+
+                    <ion-label position="floating"><b>telpon</b></ion-label>
+                    <ion-input value={{restoration.tel}} [(ngModel)]="restoration.tel" required></ion-input>
+
+
+                </ion-item>
+
+                <ion-item lines="inset">
+                    <ion-icon name="airplane" slot="start" color="primary"></ion-icon>
+
+                    <ion-label position="floating"><b>Negara</b></ion-label>
+                    <ion-input value={{restoration.pays}} [(ngModel)]="restoration.pays" required></ion-input>
+
+                </ion-item>
+                <ion-item lines="inset">
+                    <ion-icon name="bus" slot="start" color="primary"></ion-icon>
+
+                    <ion-label position="floating"><b>Kabupaten</b></ion-label>
+                    <ion-input value={{restoration.departement}} [(ngModel)]="restoration.departement" required></ion-input>
+
+                </ion-item>
+                <ion-item lines="inset">
+                    <ion-icon name="car-sport" slot="start" color="primary"></ion-icon>
+
+                    <ion-label position="floating"><b>Kota</b></ion-label>
+                    <ion-input value={{restoration.ville}} [(ngModel)]="restoration.ville" required></ion-input>
+
+                </ion-item>
+                <ion-item lines="inset">
+                    <ion-icon name="home" slot="start" color="primary"></ion-icon>
+
+                    <ion-label position="floating"><b>Wilayah</b></ion-label>
+                    <ion-input value={{restoration.quartier}} [(ngModel)]="restoration.quartier" required></ion-input>
+
+                </ion-item>
+
+
+
+                <ion-item lines="inset">
+                    <ion-icon name="bookmark-outline" slot="start" color="primary"></ion-icon>
+                    <ion-label position="floating"><b>Jenis</b></ion-label>
+
+                    <ion-select [(ngModel)]="restoration.categorie" okText="Okay" cancelText="Dismiss">
+                        <ion-select-option value={{sta.nom}} *ngFor="let sta of engin">{{sta.nom}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+            </ion-list>
+
+            <ion-button type="submit" expand="block" color="primary" (click)="save()">Modifier</ion-button>
+            <ion-row>
+
+                <ion-col>
+                    <ion-button color="tertiary" (click)="commande()"> Pesanan</ion-button>
+                </ion-col>
+                <ion-col>
+                    <ion-button color="primary" (click)="plat()"> Lihat produkt kami</ion-button>
+                </ion-col>
+                <ion-col *ngIf="derange==restoration.idBoutique">
+                    <ion-button color="secondary" (click)="deleteR()"> Hapus</ion-button>
+                </ion-col>
+            </ion-row>
+            <ion-card>
+                <ion-card-header>
+                    <ion-row>
+                        <ion-col>
+                            <b> Ulasan pelanggan</b>
+                        </ion-col>
+                        <ion-col>
+                            {{lcom}}
+                        </ion-col>
+                    </ion-row>
+
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-list>
+                        <ion-item *ngFor="let sta of comments" (click)="redic(sta.id)">
+                            <ion-avatar slot="start">
+
+                                <ion-img [src]=sta.photo alt="Photo de Profil" *ngIf="sta.photo!=''"></ion-img>
+
+
+                                <ion-img [src]="'/assets/ava2.png'" alt="Photo de Profil" *ngIf="sta.photo==''"></ion-img>
+
+                            </ion-avatar>
+
+                            <ion-label>
+                                <p> <b>{{sta.nom}}</b><span float-rigth>      {{sta.date.seconds * 1000 | date:'short'}}</span> </p>
+
+                                <p> {{sta.content}}</p>
+                            </ion-label>
+
+                        </ion-item>
+                    </ion-list>
+
+                </ion-card-content>
+                <ion-card-title>
+                    <ion-item>
+                        <ion-label position="floating"><b>Ulasan anda</b></ion-label>
+                        <ion-input value={{commentaire}} [(ngModel)]="commentaire" required></ion-input>
+                        <ion-button color="tertiary" (click)="send()" slot="end">
+                            <ion-icon name="send"></ion-icon>
+                        </ion-button>
+                    </ion-item>
+                </ion-card-title>
+            </ion-card>
+        </div>
+        <div *ngIf="derange == null || derange!=restoration.idBoutique">
+
+            <div *ngIf="restoration.photo.length>=1">
+                <ion-slides pager="true" [options]="slideOpts">
+                    <ion-slide *ngFor="let s of restoration.photo">
+                        <ion-card>
+                            <ion-card-header>
+                                <img heigth="4px" src={{s}}>
+                            </ion-card-header>
+                        </ion-card>
+                    </ion-slide>
+                </ion-slides>
+            </div>
+
+
+            <div *ngIf="restoration.logo && restoration.logo !=''">
+
+                <img heigth="4px" width="100%" src={{restoration.logo}}>
+
+            </div>
+  <!--
+
+            <ion-list>
+                <ion-item lines="inset">
+                    <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                    <ion-label>
+                        <p [innerHTML]=restoration.nom>{{restoration.nom}}</p>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item lines="inset">
+                    <ion-icon name="call" slot="start" color="primary"></ion-icon>
+                    <ion-label>
+                        <p>{{restoration.tel}}</p>
+                    </ion-label>
+                </ion-item>
+                <ion-item lines="inset">
+                    <ion-icon name="airplane" slot="start" color="primary"></ion-icon>
+                    <ion-label>
+                        <p>{{restoration.pays}}</p>
+                    </ion-label>
+                </ion-item>
+                <ion-item lines="inset">
+                    <ion-icon name="bus" slot="start" color="primary"></ion-icon>
+                    <ion-label><b>Département</b>
+                        <p>{{restoration.departement}}</p>
+                    </ion-label>
+                </ion-item>
+                <ion-item lines="inset">
+                    <ion-icon name="car-sport" slot="start" color="primary"></ion-icon>
+                    <ion-label><b>Ville</b>
+                        <p>{{ restoration.ville}}</p>
+                    </ion-label>
+                </ion-item>
+                <ion-item lines="inset">
+                    <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                    <ion-label><b>Quartier</b>
+                        <p>{{ restoration.quartier}}</p>
+                    </ion-label>
+                </ion-item>
+
+
+
+                <ion-item lines="inset">
+                    <ion-icon name="bookmark-outline" slot="start" color="primary"></ion-icon>
+                    <ion-label><b>Spécialité</b>
+                        <p>{{ restoration.categorie}}</p>
+                    </ion-label>
+                </ion-item>
+                <ion-button color="primary" expand="block" (click)="plat()"> Consulter ses produits</ion-button>
+            </ion-list>
+
+
+
+
+        -->
+
+            <ion-card   class="cartesss">
+                <ion-item>
+                  <ion-avatar  item-start>
+                    <img src="{{restoration.logo}}">
+                  </ion-avatar>
+                  <ion-label color="primary">{{restoration.nom}}</ion-label>
+                  <ion-button (click)="plat()" size="small">
+                    <ion-icon slot="start" name="log-out-outline"></ion-icon>
+                    <Menu></Menu>
+                  </ion-button>
+                </ion-item>
+                <ion-row>
+                  <ion-col>
+
+                      <ion-badge color="warning">{{ restoration.categorie}}  </ion-badge>
+                  </ion-col>
+                  <ion-col>
+
+                  </ion-col>
+                  <ion-col align-self-center text-center>
+                    <ion-note>
+
+                      <ion-badge color="light">{{restoration.tel}}</ion-badge>
+                    </ion-note>
+                  </ion-col>
+
+                </ion-row>
+
+                <ion-row>
+
+                    <ion-col align-self-center text-center>
+                      <ion-note>
+
+                        <ion-badge color="light">{{restoration.quartier}}</ion-badge>
+                      </ion-note>
+                    </ion-col>
+
+                    <ion-col align-self-center text-center>
+                        <ion-note>
+
+                          <ion-badge color="light">{{restoration.ville}}</ion-badge>
+                        </ion-note>
+                      </ion-col>
+
+                      <ion-col align-self-center text-center>
+                        <ion-note>
+
+                          <ion-badge color="light">{{restoration.departement}} - {{restoration.pays}}</ion-badge>
+                        </ion-note>
+                      </ion-col>
+
+                  </ion-row>
+
+
+              </ion-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <ion-card>
+                <ion-card-header>
+                    <ion-row>
+                        <ion-col>
+                            <b> Ulasan pelanggan</b>
+                        </ion-col>
+
+                    </ion-row>
+
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-list>
+                        <ion-item *ngFor="let sta of comments" (click)="redic(sta.id)">
+                            <ion-avatar slot="start">
+
+                                <ion-img [src]=sta.photo alt="Photo de Profil" *ngIf="sta.photo!=''"></ion-img>
+
+
+                                <ion-img [src]="'/assets/ava2.png'" alt="Photo de Profil" *ngIf="sta.photo==''"></ion-img>
+
+                            </ion-avatar>
+
+                            <ion-label>
+                                <p> <b>{{sta.nom}}</b><span float-rigth>{{sta.date.seconds * 1000 | date:'short'}}</span> </p>
+
+                                <p> {{sta.content}}</p>
+                            </ion-label>
+
+                        </ion-item>
+                    </ion-list>
+
+                </ion-card-content>
+                <ion-card-title>
+                    <ion-item>
+                        <ion-label position="floating">Ulasan anda</ion-label>
+                        <ion-input value={{commentaire}} [(ngModel)]="commentaire" required></ion-input>
+                        <ion-button color="primary" (click)="send()" slot="end">
+                            <ion-icon name="send"></ion-icon>
+                        </ion-button>
+                    </ion-item>
+                </ion-card-title>
+            </ion-card>
+        </div>
+
+    </div>
+
+
+
+    <div *ngIf="!affichage">
+        <ion-searchbar showcancelbutton="" animated (ionInput)="filterList($event)"></ion-searchbar>
+        <ion-list>
+            <div *ngFor="let sta of restauranti">
+                <ion-item (click)="redic(sta.id)">
+                    <ion-thumbnail slot="start">
+
+                        <ion-img [src]=sta.logo alt="Photo de Profil" *ngIf="sta.logo!=''"></ion-img>
+
+
+                        <ion-img [src]="'/assets/ava2.png'" alt="Photo de Profil" *ngIf="sta.logo==''"></ion-img>
+
+                    </ion-thumbnail>
+
+                    <ion-label>
+                        <p> <b>{{sta.nom}}</b></p>
+
+                        <p> <b>Jenis</b>:</p>
+                        <p> {{sta.categorie}}</p>
+                    </ion-label>
+                    <ion-label slot="end">
+                        <p> <b>Kota</b>:{{sta.ville}}</p>
+                        <p> <b>Jarak</b>:{{gps.calculateDistance(sta.lat,identifie.lat,sta.long,identifie.long)|number:'1.1-2'}}Km</p>
+
+
+                    </ion-label>
+                </ion-item>
+            </div>
+        </ion-list>
+    </div>
+</ion-content>

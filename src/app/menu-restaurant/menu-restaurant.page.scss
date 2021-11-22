@@ -1,0 +1,69 @@
+.services{
+    background-color: white;
+    border: 1px solid #242750;
+    border-radius:5px;
+}
+
+.chop{
+    background-color: transparent;
+}
+
+.card-content-md {
+    padding-left: unset;
+    padding-right: unset;
+    -webkit-padding-start: 0px; 
+    padding-inline-start: 0px; 
+    -webkit-padding-end: 0px; 
+    padding-inline-end: 16px;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cartes {
+    width: 46%;
+    margin: 7px;
+}
+
+on-card.ion-color .ion-inherit-color, ion-card-header.ion-color .ion-inherit-color {
+    color: inherit;
+    padding: 0px;
+}
+
+.labess {
+    color:#242750;
+}
+
+.owner {
+    color:white;
+}
+
+.small{
+    font-size: 12px;
+}
+
+
+.md-card-bg .md-card-subtitle,
+.md-card-bg .md-card-title {
+    position: absolute;
+    top: 50%;
+    color: #fff;
+    width: 100%;
+}
+
+.md-card-bg .md-card-title {
+    margin-top: -30px;
+}
+
+.md-card-bg .md-card-subtitle {
+    margin-top: 10px;
+}
+
+
+.md-card-bg {
+    width: 46%;
+   
+}

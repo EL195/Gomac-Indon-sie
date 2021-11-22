@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Réservez votre suite</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-item>
+    <p text-justify>
+      Pour réserver un hôtel veuiller renseigner vos informations dans le formulaire ci-dessous.Vous pouvez aussi réserver votre hôtel sur <span style="color:red;font-size: 22px;font-weight: 900;" (click)="redirect()">Afitra en ligne.</span>
+    </p>
+  </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <form [formGroup]="complaintForm" (ngSubmit)="newComplaint()">
+            
+            
+            <ion-item>
+              <ion-label position="floating">Nom du passager</ion-label>
+              <ion-input formControlName="nomC" type="text" value={{nomc}}></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">CNI</ion-label>
+              <ion-input formControlName="phone" type="number" ></ion-input>
+            </ion-item>
+
+
+            <ion-item>
+              <ion-label position="floating">Téléphone</ion-label>
+              <ion-input formControlName="phone" type="number" value={{phony}}></ion-input>
+            </ion-item>
+
+
+            <ion-item> 
+              <ion-label position="floating">Email</ion-label>
+              <ion-input formControlName="email" type="text" value={{emaily}}></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Date d'entrée</ion-label>
+              <ion-datetime formControlName="depart" displayFormat="D MMM YYYY" min="2020" max="2099" ></ion-datetime>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Date de sortie</ion-label>
+              <ion-datetime formControlName="sortie" displayFormat="D MMM YYYY" min="2020" max="2099" ></ion-datetime>
+            </ion-item>
+
+
+
+            <ion-item>
+              <ion-label>Ville</ion-label>
+              <ion-select formControlName="ville" value="default" okText="Valider" cancelText="Annuler">
+                <ion-select-option value="Douala">Douala</ion-select-option>
+                <ion-select-option value="Bafoussam">Bafoussam</ion-select-option>
+                <ion-select-option value="Foumbam">Foumbam</ion-select-option>
+                <ion-select-option value="Foumbot">Foumbot</ion-select-option>
+                <ion-select-option value="Koutaba">Koutaba</ion-select-option>
+                <ion-select-option value="Mbouda">Mbouda</ion-select-option>
+                <ion-select-option value="Dschang">Dschang</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Type de suite</ion-label>
+              <ion-select formControlName="type" value="default" okText="Valider" cancelText="Annuler">
+                <ion-select-option value="Nuptiale">Nuptiale</ion-select-option>
+                <ion-select-option value="Vip">Vip</ion-select-option>
+                <ion-select-option value="Senior">Senior</ion-select-option>
+                <ion-select-option value="Junior">Junior</ion-select-option>
+                <ion-select-option value="Royale">Royale</ion-select-option>
+                <ion-select-option value="Simple">Simple</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+  
+            <ion-row class="btn-div">
+              <ion-button [disabled]="complaintForm.invalid" type="submit" id="saveBtn" color="primary">
+                Enregister ma Réserveation <ion-icon name="send"></ion-icon>
+              </ion-button>
+            </ion-row>
+          </form>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

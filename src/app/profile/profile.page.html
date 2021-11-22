@@ -1,0 +1,223 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-title>Akun saya</ion-title>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/home"> </ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ 
+  <ion-card>
+      <ion-card-header>
+          <div *ngIf="profil.photo.length>=2">
+              <ion-img [src]="profil.photo" alt="Photo de Profil"></ion-img>
+          </div>
+          <div *ngIf="2>profil.photo.length">
+              <ion-img [src]="'/assets/img/ava2.png'" alt="Photo de Profil"></ion-img>
+          </div>
+
+      </ion-card-header>
+      <ion-card-content>
+          <div *ngIf="edit !=true ">
+              <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="secondary" *ngIf="edit !=true ">
+                  <ion-fab-button (click)="(edit = !edit)">
+                      <ion-icon name="create-outline"></ion-icon>
+                  </ion-fab-button>
+              </ion-fab>
+              <ion-list>
+                  <ion-item lines="inset">
+                      <ion-icon name="person" slot="start" color="primary"></ion-icon>
+                      <ion-label>
+                          <p> <b>Nama</b></p>
+                          <p> {{profil.nom}}</p>
+                      </ion-label>
+
+                  </ion-item>
+                  <ion-item lines="inset">
+                      <ion-icon name="person-add" slot="start" color="primary"></ion-icon>
+                      <ion-label>
+                          <p> <b>Nama belakang</b></p>
+                          <p> {{profil.prenom}}</p>
+                      </ion-label>
+                  </ion-item>
+                  <ion-item lines="inset">
+                      <ion-icon name="call" slot="start" color="primary"></ion-icon>
+                      <ion-label>
+                          <p> <b>Telpon</b></p>
+                          <p> {{profil.tel}}</p>
+                      </ion-label>
+                  </ion-item>
+                  <ion-item lines="inset">
+                      <ion-icon name="cart" slot="start" color="primary"></ion-icon>
+                      <ion-label>
+                          <p> <b>Saldo</b></p>
+                          <p> {{profil.credit}}</p>
+                      </ion-label>
+                  </ion-item>
+                  <ion-item lines="inset">
+                      <ion-icon name="mail-unread" slot="start" color="primary"></ion-icon>
+                      <ion-label>
+                          <p> <b>Email</b></p>
+                          <p> {{profil.email}}</p>
+                      </ion-label>
+                  </ion-item>
+                  <ion-item lines="inset">
+                      <ion-icon name="lock-closed" slot="start" color="primary"></ion-icon>
+                      <ion-label>
+                          <p> <b>Kode Pin</b></p>
+                          <p> {{profil.pin}}</p>
+                      </ion-label>
+                  </ion-item>
+                  <ion-item lines="inset">
+                      <ion-icon name="airplane" slot="start" color="primary"></ion-icon>
+                      <ion-label>
+                          <p> <b>Negara</b></p>
+                          <p> {{profil.pays}}</p>
+                      </ion-label>
+                  </ion-item>
+                  <ion-item lines="inset">
+                      <ion-icon name="bus" slot="start" color="primary"></ion-icon>
+                      <ion-label>
+                          <p><b>Kabupaten</b></p>
+                          <p>{{profil.departement}}</p>
+                      </ion-label>
+                  </ion-item>
+                  <ion-item lines="inset">
+                      <ion-icon name="car-sport" slot="start" color="primary"></ion-icon>
+                      <ion-label>
+                          <p><b>Kota</b></p>
+                          <p> {{profil.ville}}</p>
+                      </ion-label>
+                  </ion-item>
+                  <ion-item lines="inset">
+                      <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                      <ion-label>
+                          <p> <b>Wilayah</b></p>
+                          <p> {{profil.quartier}}</p>
+                      </ion-label>
+                  </ion-item>
+                  <ion-item lines="inset">
+                      <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                      <ion-label>
+                          <p> <b>Status</b></p>
+                          <p> {{profil.status}}</p>
+                      </ion-label>
+                  </ion-item>
+                  <div *ngIf="profil.status=='Conducteur'">
+                      <ion-item lines="inset">
+                          <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                          <ion-label>
+                              <p> <b>Jenis kendaraan</b></p>
+                              <p> {{profil.modele}}</p>
+                          </ion-label>
+                      </ion-item>
+                      <ion-item lines="inset">
+                          <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                          <ion-label>
+                              <p> <b>Nomor pendaftaran</b></p>
+                              <p> {{profil.matricule}}</p>
+                          </ion-label>
+                      </ion-item>
+                  </div>
+              </ion-list>
+          </div>
+          <div *ngIf="edit">
+              <ion-button expand="block" color="primary" (click)="photosave()">Ubah foto profil</ion-button>
+              <ion-list>
+                  <ion-item lines="inset">
+                      <ion-icon name="person" slot="start" color="primary"></ion-icon>
+
+                      <ion-label position="floating"><b>Nama</b></ion-label>
+                      <ion-input value={{profil.nom}} [(ngModel)]="profil.nom"></ion-input>
+
+                  </ion-item>
+                  <ion-item lines="inset">
+                      <ion-icon name="person-add" slot="start" color="primary"></ion-icon>
+
+                      <ion-label position="floating"><b>Nama belakang</b></ion-label>
+                      <ion-input value={{profil.prenom}} [(ngModel)]="profil.prenom"></ion-input>
+
+                  </ion-item>
+                  <ion-item lines="inset">
+                      <ion-icon name="call" slot="start" color="primary"></ion-icon>
+
+
+                      <ion-label position="floating"><b>Telpon</b></ion-label>
+                      <ion-input value={{profil.tel}} [(ngModel)]="profil.tel"></ion-input>
+
+
+                  </ion-item>
+
+
+                  <ion-item lines="inset">
+                      <ion-icon name="lock-closed" slot="start" color="primary"></ion-icon>
+
+                      <ion-label position="floating"><b>Kode Pin</b></ion-label>
+                      <ion-input value={{profil.pin}} [(ngModel)]="profil.pin"></ion-input>
+
+                  </ion-item>
+                  <ion-item lines="inset">
+                      <ion-icon name="airplane" slot="start" color="primary"></ion-icon>
+
+                      <ion-label position="floating"><b>Negara</b></ion-label>
+                      <ion-input value={{profil.pays}} [(ngModel)]="profil.pays"></ion-input>
+
+                  </ion-item>
+                  <ion-item lines="inset">
+                      <ion-icon name="bus" slot="start" color="primary"></ion-icon>
+
+                      <ion-label position="floating"><b>Kabupaten</b></ion-label>
+                      <ion-input value={{profil.departement}} [(ngModel)]="profil.departement"></ion-input>
+
+                  </ion-item>
+                  <ion-item lines="inset">
+                      <ion-icon name="car-sport" slot="start" color="primary"></ion-icon>
+
+                      <ion-label position="floating"><b>Kota</b></ion-label>
+                      <ion-input value={{profil.ville}} [(ngModel)]="profil.ville"></ion-input>
+
+                  </ion-item>
+                  <ion-item lines="inset">
+                      <ion-icon name="home" slot="start" color="primary"></ion-icon>
+
+                      <ion-label position="floating"><b>Wilayah</b></ion-label>
+                      <ion-input value={{profil.quartier}} [(ngModel)]="profil.quartier"></ion-input>
+
+                  </ion-item>
+
+
+                  <ion-item lines="inset">
+                      <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                      <ion-label position="floating"><b>Status</b></ion-label>
+
+                      <ion-select [(ngModel)]="profil.status" okText="Okay" cancelText="Dismiss">
+                          <ion-select-option value={{sta}} *ngFor="let sta of role">{{ sta}}</ion-select-option>
+
+                      </ion-select>
+
+                  </ion-item>
+                  <div *ngIf="profil.status=='Conducteur'">
+                      <ion-item lines="inset">
+                          <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                          <ion-label position="floating"><b>Jenis kendaraan</b></ion-label>
+
+                          <ion-select [(ngModel)]="profil.modele" okText="Okay" cancelText="Dismiss">
+                              <ion-select-option value={{sta}} *ngFor="let sta of engin">{{ sta}}</ion-select-option>
+
+                          </ion-select>
+                      </ion-item>
+                      <ion-item lines="inset">
+                          <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                          <ion-label position="floating"><b>Nomor pendaftaran</b></ion-label>
+                          <ion-input value={{profil.matricule}} [(ngModel)]="profil.matricule"></ion-input>
+                      </ion-item>
+                  </div>
+              </ion-list>
+
+              <ion-button expand="block" color="primary" (click)="save()">Validasi</ion-button>
+          </div>
+      </ion-card-content>
+  </ion-card>
+</ion-content>

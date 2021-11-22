@@ -1,0 +1,87 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Detail servis</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/home"> </ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+    <div *ngIf="demande.photo.length>=2">
+        <ion-img [src]="demande.photo" alt="Photo de demande" width="100%" height="70px"></ion-img>
+    </div>
+    <ion-list>
+        <ion-item lines="inset">
+            <ion-icon name="person" slot="start" color="primary"></ion-icon>
+            <ion-label>
+                <p> <b>Nama : </b> <span [innerHTML]="client.nom">{{client.nom}} </span> <span> {{client.prenom}}</span></p>
+                <p> <b>Telpon </b>: <span>{{client.tel}} </span> </p>
+            </ion-label>
+            <ion-button slot="end" color="tertiary" (click)="caller(client.tel)">
+                <ion-icon slot="icon-only" name="call"></ion-icon>
+              </ion-button>
+        </ion-item>
+
+        <ion-item lines="inset">
+            <ion-icon name="car" slot="start" color="primary"></ion-icon>
+            <ion-label>
+                <p> <b>Jenis</b> : <span *ngIf="demande.type=='Colis'">Expedisi</span> <span *ngIf="demande.type!='Colis'">{{demande.type}} </span> </p>
+                <p> <b>Kendaraan</b> : {{demande.engin}}</p>
+            </ion-label>
+        </ion-item>
+        <ion-item lines="inset">
+            <ion-icon name="bicycle" slot="start" color="primary"></ion-icon>
+            <ion-label>
+                <p> <b> Keberangkatan : </b> {{demande.villedepart}}(<b>{{demande.depart}}</b>)</p>
+                <p> <b> Tujuan :</b>: {{demande.villearrive}}(<b>{{demande.arrive}}</b>)</p>
+            </ion-label>
+        </ion-item>
+
+        <ion-item lines="inset">
+            <ion-icon name="gift" slot="start" color="primary"></ion-icon>
+            <ion-label>
+                <p> <b>Jarak : </b>{{km}}Km </p>
+                <p> <b>tarif yang diusulkan : </b>{{demande.prix}}XAF</p>
+                <p><b>Tanggal</b>:{{demande.date.seconds * 1000 | date:'full'}}</p>
+            </ion-label>
+        </ion-item>
+
+        <div *ngIf="demande.idConducteur!=''">
+            <ion-item lines="inset">
+                <ion-icon name="person-add" slot="start" color="primary"></ion-icon>
+                <ion-label>
+                    <p><b>Detail sopir</b></p>
+                    <p> <span [innerHTML]="conducteur.nom">{{conducteur.nom}} </span> <span> {{conducteur.prenom}}</span> </p>
+                    <p><span>{{conducteur.tel}} </span> </p>
+                </ion-label>
+                <ion-button slot="end" color="secondary"  (click)="callere(conducteur.tel)">
+                    <ion-icon slot="icon-only" name="call"></ion-icon>
+                  </ion-button>
+            </ion-item>
+
+
+
+            <div *ngIf="conducteur.photo.length>=2">
+                <ion-img [src]="conducteur.photo" alt="Photo de l'appareil" width="100%" height="50px"></ion-img>
+            </div>
+        </div>
+
+
+
+
+    </ion-list>
+    <ion-row>
+        <ion-col *ngIf="demande.idConducteur=='' && stt=='Conducteur' && !demande.status && timeouti">
+
+            <ion-button expand="block" color="secondary" (click)="save()">Validasi</ion-button>
+
+        </ion-col>
+
+        <ion-col *ngIf="demande.arrivelat!=0 && demande.arrivelong!=0">
+
+            <ion-button expand="block" color="primary" (click)="savel()">Map</ion-button>
+
+        </ion-col>
+    </ion-row>
+</ion-content>

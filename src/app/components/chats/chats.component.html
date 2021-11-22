@@ -1,0 +1,141 @@
+<ion-content>
+
+    <div *ngIf="read==false">
+
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="secondary" *ngIf="edit == true ">
+            <ion-fab-button (click)="(read = !read)">
+                <ion-icon name="create-outline"></ion-icon>
+            </ion-fab-button>
+        </ion-fab>
+        <!-- Courses -->
+        <div *ngFor="let sta of transporteur">
+            <ion-card class="cartesss" *ngIf="gps.calculateDistance(sta.departlat,this.profil.lat,sta.departlong,profil.long)<5">
+
+
+ 
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-img [src]=sta.photo alt="Photo de Profil" *ngIf="sta.photo!=''"></ion-img>
+                        <ion-img [src]="'/assets/ava2.png'" alt="Photo de Profil" *ngIf="sta.photo==''"></ion-img>
+                    </ion-avatar>
+                    <ion-label color="primary">{{sta.depart}} - {{sta.arrive}}</ion-label>
+                    <ion-button (click)="redic(sta.id)" size="small">
+                        <ion-icon slot="start" name="log-out-outline"></ion-icon>
+                        Verifikasi
+                    </ion-button>
+                </ion-item>
+                <ion-row>
+                    <ion-col>
+                        <div>
+                            <ion-badge color="warning" slot="end">{{sta.prix}} C</ion-badge>
+                        </div>
+                    </ion-col>
+                    <ion-col>
+                        <div>{{gps.calculateDistance(sta.departlat,this.profil.lat,sta.departlong,profil.long)|number:'1.1-2'}}km </div>
+                    </ion-col>
+
+                    <ion-col align-self-center text-center>
+                        <ion-note>
+                            <ion-badge color="light">{{sta.date.seconds * 1000 | date:'short'}}</ion-badge>
+                        </ion-note>
+                    </ion-col>
+                    <ion-col>
+                        <ion-badge *ngIf="sta.type=='Colis'" color="tertiary">Expedisi </ion-badge>
+                        <ion-badge *ngIf="sta.type=='Course'" color="success">{{sta.type}} </ion-badge>
+
+                    </ion-col>
+                </ion-row>
+
+            </ion-card>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div *ngIf="read==true">
+
+        <br/>
+        <ion-list>
+            <ion-item lines="inset">
+                <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                <ion-label position="floating"><b>Jenis servis</b></ion-label>
+                <ion-select [(ngModel)]="course.type" okText="Okay" cancelText="Dismiss" required>
+                    <ion-select-option value="Course">Penumpang</ion-select-option>
+                    <ion-select-option value="Colis">Expedisi</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <br/>
+            <div *ngIf="course.type=='Colis'">
+                <ion-item lines="inset">
+                    <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                    <ion-label position="floating"><b> Kota keberangkatan</b></ion-label>
+                    <ion-input value={{course.villedepart}} [(ngModel)]="course.villedepart"></ion-input>
+                </ion-item>
+            </div>
+            <ion-item lines="inset">
+                <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                <ion-label position="floating"><b>Keberangkatan</b></ion-label>
+                <ion-input value={{course.depart}} [(ngModel)]="course.depart"></ion-input>
+            </ion-item>
+            <br/>
+            <div *ngIf="course.type=='Colis'">
+                <ion-item lines="inset">
+                    <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                    <ion-label position="floating"><b> Tujuan</b></ion-label>
+                    <ion-input value={{course.villearrive}} [(ngModel)]="course.villearrive"></ion-input>
+                </ion-item>
+            </div>
+            <ion-item lines="inset">
+                <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                <ion-label position="floating"><b>Alamat tujuan</b></ion-label>
+                <ion-input value={{course.arrive}} [(ngModel)]="course.arrive"></ion-input>
+            </ion-item>
+            <br/>
+            <ion-item lines="inset">
+                <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                <ion-label position="floating"><b>Pilih kendaraan</b></ion-label>
+                <ion-select [(ngModel)]="course.engin" okText="Okay" cancelText="Dismiss">
+                    <ion-select-option value={{sta}} *ngFor="let sta of engin">{{ sta}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <br/>
+            <ion-item lines="inset">
+                <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                <ion-label position="floating"><b>Ongkos</b></ion-label>
+                <ion-input type=number value={{course.prix}} [(ngModel)]="course.prix" required></ion-input>
+            </ion-item>
+            <br/>
+        </ion-list>
+        <div *ngIf="course.type=='Colis'">
+            <ion-item lines="inset">
+
+                <ion-label><b> Tampilkan gambar</b>
+
+                    <p>{{course.photo}}</p>
+                </ion-label>
+                <ion-button (click)="photosave()" color="primary" slot="start">
+                    <ion-icon name="camera"></ion-icon>
+                </ion-button>
+            </ion-item>
+            <div *ngIf!="">
+                <ion-img [src]=course.photo alt="Photo du Colis" width="100%" heigth="180px"></ion-img>
+            </div>
+        </div>
+        <ion-row>
+            <ion-col>
+                <ion-button expand="block" color="tertiary" (click)="redir()">
+                    Map
+                </ion-button>
+            </ion-col>
+            <ion-col>
+                <ion-button expand="block" color="secondary" (click)="save()">Validasi</ion-button>
+            </ion-col>
+
+        </ion-row>
+    </div>
+</ion-content>

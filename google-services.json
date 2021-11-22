@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "522914356259",
+    "project_id": "gomac-indonesie-53557",
+    "storage_bucket": "gomac-indonesie-53557.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522914356259:android:b6ca9a792451ded22e6596",
+        "android_client_info": {
+          "package_name": "com.indogoamc.cm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522914356259-7jrvqqomoqtlnq7b409nfpfp40bbluht.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmRwGXuVm8MuCFbbV-H8nLO0toG6VrC24"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522914356259-7jrvqqomoqtlnq7b409nfpfp40bbluht.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

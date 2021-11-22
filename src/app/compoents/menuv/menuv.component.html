@@ -1,0 +1,33 @@
+<ion-list padding>
+    <ion-item *ngIf="boutique==true" (click)="ville()">
+        <ion-icon name="business-outline"></ion-icon>
+        Kota
+    </ion-item>
+    <ion-item *ngIf="boutique==true" (click)="agence()">
+        <ion-icon name="apps-outline"></ion-icon>
+        Bis saya</ion-item>
+    <ion-item (click)="histo()">
+        <ion-icon name="bookmarks-outline"></ion-icon>
+        Sejarah perjalanan
+    </ion-item>
+    <ion-item (click)="billet()">
+        <ion-icon name="document-text-outline"></ion-icon>
+     Tiket saya
+    </ion-item>
+    <ion-item (click)="notification()">
+        <ion-icon name="notifications-outline" color="primary"></ion-icon>
+        Notifikasi
+    </ion-item>
+    <ion-item (click)="transaction()">
+        <ion-icon name="cash-outline" color="primary"></ion-icon>
+        Transaksi
+    </ion-item>
+    <ion-item *ngIf="connect!=true" (click)="reserv()">
+        <ion-icon name="download-outline"></ion-icon>
+        Pemesanan
+    </ion-item>
+    <ion-item *ngIf="connect!=false" (click)="login()">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        Silahkan masuks
+    </ion-item>
+</ion-list>

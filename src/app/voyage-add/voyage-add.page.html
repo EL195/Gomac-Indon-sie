@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Perjalanan baru</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+ 
+
+<ion-content>
+  <ion-grid>
+  
+  
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>keberangkatan</ion-label>
+            <ion-select [(ngModel)]="depart" value="Sélectionner" okText="Valider" cancelText="Annuler">
+              <ion-select-option *ngFor="let info of principal" value="{{info.libelle}}" > {{info.libelle}} </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Tujuan</ion-label>
+            <ion-select [(ngModel)]="arrivee" value="Sélectionner" okText="Valider" cancelText="Annuler">
+              <ion-select-option *ngFor="let info of principal" value="{{info.libelle}}" > {{info.libelle}} </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-input clearInput type="number" placeholder="Nombre de places" [(ngModel)]="place" class="input" padding-horizontal></ion-input>
+        </ion-col>
+      </ion-row>
+
+
+      
+      <ion-row>
+        <ion-col>
+          <ion-input clearInput type="number" placeholder="Prix" [(ngModel)]="prix" class="input" padding-horizontal></ion-input>
+        </ion-col>
+      </ion-row>
+
+
+      
+
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Jenis</ion-label>
+            <ion-select [(ngModel)]="type" value="brown" okText="Valider" cancelText="Annuler">
+              <ion-select-option value="VIP">VIP</ion-select-option>
+              <ion-select-option value="Classique">Clasik</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+  
+
+      <ion-row>
+        <ion-col>
+        <ion-item>
+          <ion-label>Tanggal dan jam</ion-label>
+          <ion-datetime [(ngModel)]="datedepart" displayFormat="D MMM YYYY H:mm" min="2020" max="2021" value="2020-06-17T11:06Z"></ion-datetime>
+        </ion-item>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" (click)="save()" color="primary"><strong class="white">Kirim</strong></ion-button>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col>
+            <ion-text class="error" text-center>{{error}}</ion-text>
+        </ion-col>
+    </ion-row>
+    </ion-grid>
+  </ion-content>
+  

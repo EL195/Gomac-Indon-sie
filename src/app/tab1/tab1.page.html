@@ -1,0 +1,114 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Selamat datang {{this.prenom}}</ion-title>
+
+        <ion-buttons slot="end" (click)="solde()">
+            <ion-icon slot="icon-only" name="cash"></ion-icon>
+            <ion-badge color="warning" style="position: absolute; right: 15px; top: -5px;">{{credit}} C</ion-badge>
+        </ion-buttons>
+
+        <ion-buttons slot="end">
+            <ion-button (click)="presentPopover($event1)">
+                <ion-icon name="ellipsis-vertical"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-image">
+    <ion-slides pager="true" #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
+        <ion-slide >
+            <ion-card class="welcome-card" (click)="showDetail(item.idArticle)">
+                <img src="assets/img/logo.png" alt="" />
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+
+    <ion-grid padding>
+        <ion-row>
+            <ion-col>
+
+
+
+                <ion-card class="services" (click)="shop()">
+                    <ion-card-content>
+                        <div class="centered text-center">
+                            <ion-thumbnail>
+                                <img src="assets/img/sale.png">
+                            </ion-thumbnail>
+                            <ion-label class="labess">Toko</ion-label>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col>
+                <ion-card class="services" (click)="circuler()">
+                    <ion-card-content>
+                        <div class="centered text-center">
+                            <ion-thumbnail>
+                                <img src="assets/img/taxi.png">
+                            </ion-thumbnail>
+                            <ion-label class="labess">Kendaraan</ion-label>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-card class="services" (click)="platList()">
+                    <ion-card-content>
+                        <div class="centered text-center">
+                            <ion-avatar>
+                                <img src="assets/img/food.png">
+                            </ion-avatar>
+                            <ion-label class="labess">Restoran</ion-label>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col>
+                <ion-card class="services" (click)="bus()">
+                    <ion-card-content>
+                        <div class="centered text-center">
+                            <ion-thumbnail>
+                                <img src="assets/img/bus.png">
+                            </ion-thumbnail>
+                            <ion-label class="labess">Tiket bis</ion-label>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+            <ion-col>
+                <ion-card class="services" (click)="hotel()">
+                    <ion-card-content>
+                        <div class="centered text-center">
+                            <ion-avatar>
+                                <img src="assets/img/hotel.png">
+                            </ion-avatar>
+                            <ion-label class="labess">Hotel</ion-label>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col>
+                <ion-card class="services" (click)="vols()">
+                    <ion-card-content>
+                        <div class="centered text-center">
+                            <ion-avatar>
+                                <img src="assets/img/avion.png">
+                            </ion-avatar>
+                            <ion-label class="labess">Tiket pesawat</ion-label>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

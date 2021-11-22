@@ -1,0 +1,231 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Makanan</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs/tab1"> </ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="presentPopover($event1)">
+                <ion-icon name="ellipsis-vertical"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+ 
+    <div *ngIf="view">
+        <div *ngIf="edit">
+            <ion-searchbar showcancelbutton="" animated (ionInput)="filterList($event)"></ion-searchbar>
+            <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="secondary" *ngIf="vefstat">
+                <ion-fab-button (click)="(edit = !edit)">
+                    <ion-icon name="create-outline"></ion-icon>
+                </ion-fab-button>
+            </ion-fab>
+            <ion-list>
+                <ion-item *ngFor="let sta of plati" (click)="redic(sta.id)">
+                    <ion-avatar slot="start">
+
+                        <ion-img [src]=sta.photo alt="Photo de Profil" *ngIf="sta.photo!=''"></ion-img>
+
+
+                        <ion-img [src]="'/assets/ava2.png'" alt="Photo de Profil" *ngIf="sta.photo==''"></ion-img>
+
+                    </ion-avatar>
+
+                    <ion-label>
+                        <p> <b>Nama</b>:{{sta.nom}}</p>
+                        <p> <b>Menu</b>:{{sta.style}}</p>
+
+                    </ion-label>
+                    <ion-label slot="end">
+                        <p> <b>Ketersediaan</b>:{{sta.disponible}}</p>
+                        <p> <b>Harga</b>:{{sta.prix}} Fcfa</p>
+                        <p *ngIf="sta.promo>0"> <b>Promo</b>:{{sta.promo}} Rp</p>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </div>
+        <div *ngIf="!edit">
+            <div *ngIf="food.photo && food.photo !=''">
+
+
+
+                <ion-card>
+                    <ion-card-header>
+                        <img heigth="4px" src={{food.photo }}>
+
+                    </ion-card-header>
+
+                </ion-card>
+
+
+            </div>
+            <ion-item lines="inset">
+                <ion-icon name="person" slot="start" color="primary"></ion-icon>
+
+                <ion-label position="floating"><b>Nama</b></ion-label>
+                <ion-input value={{food.nom}} [(ngModel)]="food.nom" required></ion-input>
+
+            </ion-item>
+            <ion-item lines="inset">
+                <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                <ion-label position="floating"><b>Description</b></ion-label>
+                <ion-textarea value={{food.description}} [(ngModel)]="food.description" required placeholder="Enter more information here..."></ion-textarea>
+            </ion-item>
+
+
+            <ion-item lines="inset">
+                <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                <ion-label position="floating"><b>Type de Plat(s)</b></ion-label>
+
+                <ion-select [(ngModel)]="food.style" okText="Okay" cancelText="Dismiss">
+                    <ion-select-option value={{sta}} *ngFor="let sta of style">{{ sta}}</ion-select-option>
+
+                </ion-select>
+            </ion-item>
+            <ion-item lines="inset">
+                <ion-icon name="home" slot="start" color="primary"></ion-icon>
+                <ion-label position="floating"><b>Disponibilité</b></ion-label>
+
+                <ion-select [(ngModel)]="food.disponible" okText="Okay" cancelText="Dismiss">
+                    <ion-select-option value={{sta}} *ngFor="let sta of disponible">{{ sta}}</ion-select-option>
+
+                </ion-select>
+            </ion-item>
+            <ion-item lines="inset">
+                <ion-icon name="person" slot="start" color="primary"></ion-icon>
+
+                <ion-label position="floating"><b>Prix (Fcfa)</b></ion-label>
+                <ion-input type="number" value={{food.prix}} [(ngModel)]="food.prix" required></ion-input>
+
+            </ion-item>
+            <ion-item lines="inset">
+                <ion-icon name="person" slot="start" color="primary"></ion-icon>
+
+                <ion-label position="floating"><b>Harga promo (Rp)</b></ion-label>
+                <ion-input type="number" value={{food.promo}} [(ngModel)]="food.promo" required></ion-input>
+
+            </ion-item>
+            <ion-row>
+                <ion-col>
+
+                    <ion-button (click)="photosave()" color="primary">
+                        Foto
+                        <ion-icon name="camera"></ion-icon>
+                    </ion-button>
+                </ion-col>
+                <ion-col>
+                    <ion-button (click)="save()" color="tertiary">
+                        Simpan
+
+                    </ion-button>
+
+                </ion-col>
+            </ion-row>
+        </div>
+    </div>
+
+    <div *ngIf="!view">
+        <div *ngIf="food.photo && food.photo !=''">
+
+            <img heigth="4px" width="100%" src={{food.photo}}>
+
+        </div>
+        <ion-item lines="inset">
+            <ion-icon name="home" slot="start" color="primary"></ion-icon>
+            <ion-label><b>Nama menu</b>
+                <p>{{food.nom}}</p>
+            </ion-label>
+        </ion-item>
+        <ion-item lines="inset">
+            <ion-icon name="home" slot="start" color="primary"></ion-icon>
+            <ion-label>
+                <p><b>Deskripsi</b></p>
+            </ion-label>
+            <ion-textarea readonly value={{food.description}}>
+            </ion-textarea>
+        </ion-item>
+        <ion-item lines="inset">
+            <ion-icon name="home" slot="start" color="primary"></ion-icon>
+            <ion-label><b>Jenis Menu</b>
+                <p>{{food.style}}</p>
+            </ion-label>
+        </ion-item>
+        <ion-item lines="inset">
+            <ion-icon name="home" slot="start" color="primary"></ion-icon>
+            <ion-label><b>Ketersediaan</b>
+                <p>{{food.disponible}}</p>
+            </ion-label>
+        </ion-item>
+        <ion-item lines="inset">
+            <ion-icon name="home" slot="start" color="primary"></ion-icon>
+            <ion-label><b>Harga</b>
+                <p>{{food.prix}} Rp</p>
+            </ion-label>
+        </ion-item>
+        <ion-item lines="inset" *ngIf="food.promo>0">
+            <ion-icon name="home" slot="start" color="primary"></ion-icon>
+            <ion-label><b>Harga promo</b>
+                <p>{{food.promo}} Rp</p>
+            </ion-label>
+        </ion-item>
+
+        <ion-row>
+
+            <ion-col *ngIf=" food.disponible  && food.created != vrestau">
+                <ion-button color="tertiary" (click)="commande()"> Pesan</ion-button>
+                <div *ngIf="suivi"> Harga {{suivi}} Rp</div>
+            </ion-col>
+
+            <ion-col>
+                <ion-button color="secondary" (click)="deleteR()" *ngIf="food.created==vrestau"> Hapus</ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-card>
+            <ion-card-header>
+                <ion-row>
+                    <ion-col>
+                        <b> Komentar</b>
+                    </ion-col>
+                    <ion-col>
+                        {{rcom}}
+                    </ion-col>
+                </ion-row>
+
+            </ion-card-header>
+            <ion-card-content>
+                <ion-list>
+                    <ion-item *ngFor="let sta of comments" (click)="redic(sta.id)">
+                        <ion-avatar slot="start">
+
+                            <ion-img [src]=sta.photo alt="Photo de Profil" *ngIf="sta.photo!=''"></ion-img>
+
+
+                            <ion-img [src]="'/assets/ava2.png'" alt="Photo de Profil" *ngIf="sta.photo==''"></ion-img>
+
+                        </ion-avatar>
+
+                        <ion-label>
+                            <p> <b>{{sta.nom}}</b><span float-rigth>      {{sta.date.seconds * 1000 | date:'short'}}</span> </p>
+
+                            <p> {{sta.content}}</p>
+                        </ion-label>
+
+                    </ion-item>
+                </ion-list>
+
+            </ion-card-content>
+            <ion-card-title>
+                <ion-item>
+                    <ion-label position="floating"><b>Komentar</b></ion-label>
+                    <ion-input value={{commentaire}} [(ngModel)]="commentaire" required></ion-input>
+                    <ion-button color="tertiary" (click)="send()" slot="end">
+                        <ion-icon name="send"></ion-icon>
+                    </ion-button>
+                </ion-item>
+            </ion-card-title>
+        </ion-card>
+    </div>
+
+</ion-content>

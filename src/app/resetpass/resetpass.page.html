@@ -1,0 +1,36 @@
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row center>
+      <ion-col>
+        
+      </ion-col>
+      <ion-col>
+        <ion-img style="width: 100px; height: 100px;" src="assets/img/GoSmartLogo.png"></ion-img>
+      </ion-col>
+      <ion-col>
+        
+      </ion-col>
+  </ion-row>
+  </ion-grid>
+  <ion-text><h3 class="title">Masukin email anda, kami akan bantu mencari kata sandi anda</h3></ion-text>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-input clearInput type="email" placeholder="Adresse électronique" [(ngModel)]="email" class="input" padding-horizontal></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" (click)="recover()" color="primary"><strong class="white">Pemulihan kata sandi</strong></ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+          <ion-text class="error" text-center>{{error}}</ion-text>
+      </ion-col>
+  </ion-row>
+  </ion-grid>
+</ion-content>

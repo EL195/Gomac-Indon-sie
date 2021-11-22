@@ -1,0 +1,34 @@
+<ion-list padding>
+  <ion-item (click)="liste()">
+    <ion-icon color="primary" name="fast-food-outline"></ion-icon>
+    Daftar menu 
+    </ion-item>
+  <ion-item (click)="menu()"> 
+    <ion-icon color="primary" name="reader-outline"></ion-icon>
+ 
+    Menus
+  </ion-item>
+  <ion-item (click)="resto()">
+    <ion-icon color="primary" name="restaurant-outline"></ion-icon>
+    Restoran
+    </ion-item>
+    <ion-item (click)="achat()">
+      <ion-icon color="primary"  name="car-outline"></ion-icon>
+      Belanjaan saya
+      </ion-item>
+
+      <ion-item *ngIf="connect==true" (click)="goProfil()">
+        <ion-icon color="primary"  name="person"></ion-icon>
+        Profil saya
+        </ion-item>
+
+        <ion-item *ngIf="connect==true" (click)="logout()">
+          <ion-icon color="primary"  name="lock-closed-outline"></ion-icon>
+          Keluar
+          </ion-item>
+
+          <ion-item *ngIf="connect!=true" (click)="login()">
+            <ion-icon color="primary"  name="lock-closed-outline"></ion-icon>
+            Masuk
+            </ion-item>
+</ion-list>

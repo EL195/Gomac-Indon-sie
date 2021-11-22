@@ -1,0 +1,70 @@
+<ion-list padding>
+    <ion-item (click)="circuler()">
+        <ion-icon color="primary" name="car-outline"></ion-icon>
+        Conducteurs
+    </ion-item>
+
+   
+    <ion-item (click)="shop()">
+        <ion-icon color="primary" name="cart-outline"></ion-icon>Toko
+    </ion-item>
+    <ion-item (click)="plat()">
+        <ion-icon color="primary" name="fast-food-outline"></ion-icon>
+        Restoran
+    </ion-item>
+    <ion-item (click)="circuler()">
+        <ion-icon color="primary" name="car-outline"></ion-icon>
+        Sopir
+    </ion-item>
+    <!--
+    <ion-item (click)="bus()">
+        <ion-icon color="primary" name="bus-outline"></ion-icon>
+        Bus
+    </ion-item>
+    <ion-item (click)="vols()">
+        <ion-icon color="primary" name="airplane-outline"></ion-icon>
+        Vols
+    </ion-item>
+    <ion-item (click)="hotel()">
+        <ion-icon color="primary" name="bed-outline"></ion-icon>
+        Hötels
+    </ion-item>
+
+        <ion-item *ngIf="connect==true" (click)="checkin()">
+        <ion-icon color="primary" name="cart"></ion-icon>
+        Réservations
+    </ion-item>
+     -->
+    <ion-item *ngIf="connect==true" (click)="notif()">
+        <ion-icon color="primary" name="chatbubbles-outline"></ion-icon>
+        Notifikasi
+    </ion-item>
+    <ion-item *ngIf="connect==true && file==true" (click)="transfert()">
+        <ion-icon color="primary" name="card-outline"></ion-icon>
+        Transfer
+    </ion-item>
+
+    <ion-item *ngIf="connect==true && connet==true" (click)="credit()">
+        <ion-icon color="primary" name="cash-outline"></ion-icon>
+        Kreditasi
+    </ion-item>
+    <ion-item *ngIf="connect==true && connet==true" (click)="active()">
+        <ion-icon color="primary" name="lock-closed-outline"></ion-icon>
+        Aktivasi
+    </ion-item>
+    <ion-item *ngIf="connect==true" (click)="suggest()">
+        <ion-icon color="primary" name="mail-outline"></ion-icon>
+        Hubungi kami
+    </ion-item>
+    <ion-item *ngIf="connect!=true" (click)="login()">
+        <ion-icon color="primary" name="lock-closed-outline"></ion-icon>
+        Masuk
+    </ion-item>
+
+
+    <ion-item *ngIf="connect==true" (click)="logout()">
+        <ion-icon color="primary" name="lock-closed-outline"></ion-icon>
+        Keluar
+    </ion-item>
+
+</ion-list>

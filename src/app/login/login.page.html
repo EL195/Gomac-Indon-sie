@@ -1,0 +1,62 @@
+
+
+<ion-content padding class="background-image">
+  <ion-grid>
+    <ion-row center>
+      <ion-col>
+        
+      </ion-col>
+      <ion-col>
+        <ion-img style="width: 100px; height: 100px;" src="assets/img/GoSmartLogo.png"></ion-img>
+      </ion-col>
+      <ion-col>
+        
+      </ion-col>
+  </ion-row>
+  </ion-grid>
+  <ion-text><h3 class="title">Silahkan masuk untuk melanjutkan ...</h3></ion-text>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-input clearInput type="email" placeholder="Adresse électronique" [(ngModel)]="email" class="input" padding-horizontal></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-input clearInput type="password" placeholder="Mot de passe" [(ngModel)]="password" class="input" padding-horizontal></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" (click)="login()" color="primary"><strong class="white">Masuk</strong></ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+          <ion-text class="error" text-center danger>{{error}}</ion-text>
+      </ion-col>
+  </ion-row>
+
+    <div class="line"></div>
+    <ion-row>
+      <ion-col>
+        <ion-text text-center color="secondary"><h6 no-margin class="small"> <a (click)="forgot()">Lupa kata sandi ?</a></h6></ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-text text-center color="tertiary"><h6 no-margin class="small"> <a (click)="visit()">Lanjut kunjungan ?</a></h6></ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" fill="outline" color="secondary" (click)="inscription()" color="secondary"><strong>Baru ? Daftar disini</strong></ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-text text-center color="medium"><h6 no-margin class="small"><a (click)="term()">Syarat penggunaan</a> et <a (click)="policy()">Peraturan kerahasiaan</a></h6></ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
